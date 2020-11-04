@@ -15,8 +15,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "lib": "lib"
   },
   "files": [
     "lib"
@@ -29,12 +28,17 @@
     "url": "git+https://github.com/greyskullrocks/eleventy-plugins.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "jest --coverage && codecov"
+  },
+  "dependencies": {
+    "@fullhuman/postcss-purgecss": "^3.0.0",
+    "autoprefixer": "^10.0.1",
+    "cssnano": "^4.1.10",
+    "jsdom": "^16.4.0",
+    "postcss": "^8.1.1",
+    "purgecss-from-html": "^3.0.0"
   },
   "bugs": {
     "url": "https://github.com/greyskullrocks/eleventy-plugins/issues"
-  },
-  "devDependencies": {
-    "typescript": "^4.0.5"
   }
 }

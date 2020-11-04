@@ -73,6 +73,6 @@ export function getExternalFiles(
   link: HTMLLinkElement,
   root: string = '_site'
 ): Promise<string> {
-  const src = `./${root}` + link.href;
+  const src = root + link.href;
   return promises.readFile(src, { encoding: "utf-8" });
 }

@@ -1,6 +1,9 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "test": "jest --coverage && codecov"
+  },
   "browserslist": [
     "node 14"
   ],

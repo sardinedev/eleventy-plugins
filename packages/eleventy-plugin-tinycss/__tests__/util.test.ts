@@ -1,15 +1,15 @@
-import { getExternalFiles, minify } from '../src/util';
+import { getExternalFiles, minify } from '../lib/util';
 import { JSDOM } from "jsdom";
 
 test('should return a promise with the contents of a CSS file', () => {
   const dom = new JSDOM();
   const document = dom.window.document;
   const linkElement: HTMLLinkElement = document.createElement('link');
-  linkElement.href = '/tests/mocks/styles.css';
+  linkElement.href = '/mocks/styles.css';
 
   const expected = `.a {font-size: large;}\n#b {color: aqua;}\n`;
 
-  return expect(getExternalFiles(linkElement, '.')).resolves.toBe(expected);
+  return expect(getExternalFiles(linkElement, __dirname)).resolves.toBe(expected);
 })
 
 test('should return a promise with the CSS styles used in the HTML', () => {
