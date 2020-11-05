@@ -1,0 +1,12 @@
+tsconfig.json
+coverage
+demo
+src
+tests
+.editorconfig
+.github
+CODE_OF_CONDUCT.md
+.eleventy.js
+.eleventy.ts
+site
+*.config.js
