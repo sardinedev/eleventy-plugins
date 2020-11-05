@@ -1,6 +1,6 @@
 {
   "name": "@greyskullrocks/eleventy-plugin-tinycss",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "A plugin for 11ty to minify and optimise CSS",
   "keywords": [
     "11ty",
