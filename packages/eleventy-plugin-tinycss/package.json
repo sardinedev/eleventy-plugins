@@ -14,11 +14,16 @@
   "homepage": "https://github.com/greyskullrocks/eleventy-plugins#readme",
   "license": "MIT",
   "main": "dist/index.js",
+  "source": "lib/.eleventy.ts",
+  "types": "dist/index.d.ts",
   "directories": {
     "lib": "lib"
   },
   "files": [
     "lib"
+  ],
+  "browserslist": [
+    "node 14"
   ],
   "publishConfig": {
     "access": "public"
@@ -28,6 +33,7 @@
     "url": "git+https://github.com/greyskullrocks/eleventy-plugins.git"
   },
   "scripts": {
+    "build": "npx microbundle -f cjs",
     "test": "jest --coverage && codecov"
   },
   "dependencies": {
