@@ -1,10 +1,10 @@
-import autoprefixer, { Autoprefixer, Options as AutoprefixerOptions} from "autoprefixer";
-import cssnano from "cssnano";
-import postcss, { AcceptedPlugin } from "postcss";
-import purgeHtml from "purgecss-from-html";
-import purgecss from "@fullhuman/postcss-purgecss";
-import { promises } from "fs";
-import { OptionsInterface } from "./options.interface";
+import autoprefixer, { Autoprefixer, Options as AutoprefixerOptions } from 'autoprefixer';
+import cssnano from 'cssnano';
+import postcss, { AcceptedPlugin } from 'postcss';
+import purgeHtml from 'purgecss-from-html';
+import purgecss from '@fullhuman/postcss-purgecss';
+import { promises } from 'fs';
+import { OptionsInterface } from './options.interface';
 
 /**
  * Transforms the CSS to a production ready state.
@@ -14,24 +14,20 @@ import { OptionsInterface } from "./options.interface";
  * @param {string} css The page CSS content
  * @param {string} html The raw HTML content
  */
-export async function minify(
-  css: string,
-  html: string,
-  options?: OptionsInterface
-): Promise<string> {
+export async function minify(css: string, html: string, options?: OptionsInterface): Promise<string> {
   const defaultPurgeCSSOptions = {
     content: [
       {
         raw: html,
-        extension: "html",
+        extension: 'html',
       },
     ],
     extractors: [
       {
         extractor: purgeHtml,
-        extensions: ["html"],
+        extensions: ['html'],
       },
-    ]
+    ],
   };
 
   let purgeCSSOptions = {
@@ -42,15 +38,15 @@ export async function minify(
 
   if (options?.autoprefixer) {
     autoprefixerOptions = {
-      ...options.autoprefixer
-    }
+      ...options.autoprefixer,
+    };
   }
 
   if (options?.purgeCSS) {
     purgeCSSOptions = {
       ...purgeCSSOptions,
-      ...options.purgeCSS
-    }
+      ...options.purgeCSS,
+    };
   }
 
   const postcssPlugins: AcceptedPlugin[] = [
@@ -69,10 +65,7 @@ export async function minify(
  * Loads an external CSS file and returns the CSS content
  * @param link The URL for an external CSS
  */
-export function getExternalFiles(
-  link: HTMLLinkElement,
-  root: string = '_site'
-): Promise<string> {
+export function getExternalFiles(link: HTMLLinkElement, root: string = '_site'): Promise<string> {
   const src = root + link.href;
-  return promises.readFile(src, { encoding: "utf-8" });
+  return promises.readFile(src, { encoding: 'utf-8' });
 }

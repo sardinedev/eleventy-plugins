@@ -1,6 +1,6 @@
 import { tiny } from '../lib/tiny';
 
-const replaceWhitespace = (str: string) => str.replace(/\s+/g,'');
+const replaceWhitespace = (str: string) => str.replace(/\s+/g, '');
 
 test('should read CSS from an external file and inline the optimised CSS', async () => {
   const inputHTML = `
@@ -25,7 +25,7 @@ test('should read CSS from an external file and inline the optimised CSS', async
     </body>
   </html>`;
 
-  let optimisedCSS = await tiny(inputHTML, {output: __dirname, purgeCSS: { keyframes: false}});
+  let optimisedCSS = await tiny(inputHTML, { output: __dirname, purgeCSS: { keyframes: false } });
 
   optimisedCSS = replaceWhitespace(optimisedCSS);
 
@@ -58,7 +58,7 @@ test('should merge multiple inline CSS', async () => {
     </body>
   </html>`;
 
-  let optimisedCSS = await tiny(inputHTML, {output: 'tests'});
+  let optimisedCSS = await tiny(inputHTML, { output: 'tests' });
 
   optimisedCSS = replaceWhitespace(optimisedCSS);
 
@@ -92,7 +92,7 @@ test('should read CSS from an external file, inline the optimised CSS and keep t
     </body>
   </html>`;
 
-  let optimisedCSS = await tiny(inputHTML, {output: __dirname});
+  let optimisedCSS = await tiny(inputHTML, { output: __dirname });
 
   optimisedCSS = replaceWhitespace(optimisedCSS);
 
@@ -125,7 +125,7 @@ test('should read both an external CSS file and inline CSS and then inline optim
     </body>
   </html>`;
 
-  let optimisedCSS = await tiny(inputHTML, {output: __dirname});
+  let optimisedCSS = await tiny(inputHTML, { output: __dirname });
 
   optimisedCSS = replaceWhitespace(optimisedCSS);
 
@@ -155,7 +155,7 @@ test('should return the HTML if no CSS links are present', async () => {
     </body>
   </html>`;
 
-  let optimisedCSS = await tiny(inputHTML, {output: __dirname});
+  let optimisedCSS = await tiny(inputHTML, { output: __dirname });
 
   optimisedCSS = replaceWhitespace(optimisedCSS);
 
@@ -185,7 +185,7 @@ test('should return the HTML if no inline or CSS links are present', async () =>
     </body>
   </html>`;
 
-  let optimisedCSS = await tiny(inputHTML, {output: __dirname});
+  let optimisedCSS = await tiny(inputHTML, { output: __dirname });
 
   optimisedCSS = replaceWhitespace(optimisedCSS);
 
@@ -193,5 +193,3 @@ test('should return the HTML if no inline or CSS links are present', async () =>
 
   return expect(optimisedCSS).toBe(expectedHTML);
 });
-
-
