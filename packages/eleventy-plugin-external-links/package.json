@@ -1,0 +1,35 @@
+{
+  "name": "@greyskullrocks/eleventy-plugin-external-links",
+  "version": "1.0.0",
+  "description": "An eleventy plugin to enforce safe external links",
+  "keywords": [
+    "11ty",
+    "11ty-plugin",
+    "eleventy",
+    "eleventy-plugin"
+  ],
+  "author": "Hugo Nogueira <hnogueira@marabyte.com>",
+  "homepage": "https://github.com/greyskullrocks/eleventy-plugins#readme",
+  "license": "MIT",
+  "main": "lib/.eleventy.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greyskullrocks/eleventy-plugins.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/greyskullrocks/eleventy-plugins/issues"
+  }
+}
