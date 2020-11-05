@@ -1,18 +1,22 @@
 import { getExternalFiles, minify } from '../lib/util';
+import { replaceWhitespace } from '../../../util/util';
 import { JSDOM } from 'jsdom';
 
-test('should return a promise with the contents of a CSS file', () => {
+test('should return a promise with the contents of a CSS file', async () => {
   const dom = new JSDOM();
   const document = dom.window.document;
   const linkElement: HTMLLinkElement = document.createElement('link');
   linkElement.href = '/mocks/styles.css';
 
-  const expected = `.a {font-size: large;}\n#b {color: aqua;}\n`;
+  const expected = `.a{font-size:large;}#b{color:aqua;}`;
 
-  return expect(getExternalFiles(linkElement, __dirname)).resolves.toBe(expected);
+  let optimisedCSS = await getExternalFiles(linkElement, __dirname);
+  optimisedCSS = replaceWhitespace(optimisedCSS);
+
+  return expect(optimisedCSS).toBe(expected);
 });
 
-test('should return a promise with the CSS styles used in the HTML', () => {
+test('should return a promise with the CSS styles used in the HTML', async () => {
   const fullCSS = `.a {font-size: large;}\n#b {color: aqua;}\n`;
   const baseHTML = `<!DOCTYPE html>
   <html>
@@ -21,12 +25,16 @@ test('should return a promise with the CSS styles used in the HTML', () => {
     </body>
   </html>`;
 
-  const expected = `.a{font-size:large}`;
+  const expected = replaceWhitespace('.a{font-size:large}');
 
-  return expect(minify(fullCSS, baseHTML)).resolves.toBe(expected);
+  let optimisedCSS = await minify(fullCSS, baseHTML);
+
+  optimisedCSS = replaceWhitespace(optimisedCSS);
+
+  return expect(optimisedCSS).toBe(expected);
 });
 
-test('should accept Autoprefixer options', () => {
+test('should accept Autoprefixer options', async () => {
   const fullCSS = `.a {font-size: large;-webkit-border-radius: 12px;border-radius: 12px;}\n`;
   const baseHTML = `<!DOCTYPE html>
   <html>
@@ -37,5 +45,8 @@ test('should accept Autoprefixer options', () => {
 
   const expected = `.a{font-size:large;-webkit-border-radius:12px;border-radius:12px}`;
 
-  return expect(minify(fullCSS, baseHTML, { autoprefixer: { remove: false } })).resolves.toBe(expected);
+  let optimisedCSS = await minify(fullCSS, baseHTML, { autoprefixer: { remove: false } });
+  optimisedCSS = replaceWhitespace(optimisedCSS);
+
+  return expect(optimisedCSS).toBe(expected);
 });

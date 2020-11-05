@@ -17,13 +17,11 @@
   "source": "lib/.eleventy.ts",
   "types": "dist/index.d.ts",
   "directories": {
-    "lib": "lib"
+    "lib": "lib",
+    "test": "__tests__"
   },
   "files": [
     "lib"
-  ],
-  "browserslist": [
-    "node 14"
   ],
   "publishConfig": {
     "access": "public"

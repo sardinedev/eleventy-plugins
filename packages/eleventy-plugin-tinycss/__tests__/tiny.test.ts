@@ -1,6 +1,5 @@
 import { tiny } from '../lib/tiny';
-
-const replaceWhitespace = (str: string) => str.replace(/\s+/g, '');
+import { replaceWhitespace } from '../../../util/util';
 
 test('should read CSS from an external file and inline the optimised CSS', async () => {
   const inputHTML = `
