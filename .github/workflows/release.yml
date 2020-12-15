@@ -18,7 +18,7 @@ jobs:
           scope: '@greyskullrocks'
 
       - name: Install dependencies
-      - run: yarn
+        run: yarn
 
       - name: Build packages
         run: npm run build
