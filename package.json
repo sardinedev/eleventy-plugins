@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
+    "build": "lerna run build --since",
     "test": "jest --coverage && codecov",
     "release": "npx lerna publish --conventional-commits --yes"
   },
