@@ -16,8 +16,13 @@ jobs:
           node-version: 14
           registry-url: 'https://registry.npmjs.org'
           scope: '@greyskullrocks'
+
       - name: Install dependencies
-        run: npm ci
+      - run: yarn
+
+      - name: Build packages
+        run: npm run build
+
       - name: Release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
