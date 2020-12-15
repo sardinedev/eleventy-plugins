@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      - run: npm ci
+      - run: npx lerna bootstrap
       - run: npx lerna run test --stream
       - uses: codecov/codecov-action@v1
         with:
