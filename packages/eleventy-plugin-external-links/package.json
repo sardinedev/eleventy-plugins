@@ -1,5 +1,5 @@
 {
-  "name": "@greyskullrocks/eleventy-plugin-external-links",
+  "name": "@sardine/eleventy-plugin-external-links",
   "version": "1.1.2",
   "description": "An eleventy plugin to enforce safe external links",
   "keywords": [
@@ -9,7 +9,7 @@
     "eleventy-plugin"
   ],
   "author": "Hugo Nogueira <hnogueira@marabyte.com>",
-  "homepage": "https://github.com/greyskullrocks/eleventy-plugins#readme",
+  "homepage": "https://github.com/sardinedev/eleventy-plugins#readme",
   "license": "MIT",
   "main": "dist/index.js",
   "source": "lib/.eleventy.ts",
@@ -26,13 +26,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/greyskullrocks/eleventy-plugins.git"
+    "url": "git+https://github.com/sardinedev/eleventy-plugins.git"
   },
   "scripts": {
     "build": "npx microbundle -f cjs"
   },
   "bugs": {
-    "url": "https://github.com/greyskullrocks/eleventy-plugins/issues"
+    "url": "https://github.com/sardinedev/eleventy-plugins/issues"
   },
   "gitHead": "23d9687b58a2878568535c89d279a6f0ff452735"
 }

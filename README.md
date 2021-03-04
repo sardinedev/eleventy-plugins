@@ -1,4 +1,4 @@
-# Greyskull Eleventy Plugins
+# Sardine Eleventy Plugins
 
 This monorepo hosts a collection of Eleventy plugins
 
