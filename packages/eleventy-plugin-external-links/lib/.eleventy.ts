@@ -1,8 +1,11 @@
-export default (eleventyConfig: any, options?: any) => {
+import { linker } from '../lib/linker';
+
+export default (eleventyConfig: any) => {
   eleventyConfig.namespace('external-links', () => {
     eleventyConfig.addTransform('external-links', async (content: string, outputPath: string) => {
       try {
         if (outputPath && outputPath.endsWith('.html')) {
+          content = linker(content);
         }
       } catch (error) {
         console.error(error);
