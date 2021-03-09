@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/sardinedev/eleventy-plugins/compare/@sardine/eleventy-plugin-external-links@1.2.0...@sardine/eleventy-plugin-external-links@1.3.0) (2021-03-09)
+
+### Features
+
+- external links main logic ([aecf766](https://github.com/sardinedev/eleventy-plugins/commit/aecf76672df04a45bbcf9139b9b0108290d1e1a7))
+
 # 1.2.0 (2021-03-04)
 
 ### Features
