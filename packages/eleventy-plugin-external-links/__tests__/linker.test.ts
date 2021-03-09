@@ -1,3 +1,4 @@
+import { replaceWhitespace } from '../../../util/util';
 import { linker } from '../lib/linker';
 
 test('finds external anchor links', () => {
@@ -13,7 +14,8 @@ test('finds external anchor links', () => {
     </body>
   </html>`;
 
-  const expectedHTML = `<!DOCTYPE html>
+  const expectedHTML = `
+  <!DOCTYPE html>
   <html>
     <body>
       <a rel="noreferrer" target="_blank" href="https://www.out.com">Click me!</a>
@@ -24,5 +26,5 @@ test('finds external anchor links', () => {
     </body>
   </html>`;
 
-  return expect(linker(inputHTML)).toBe(expectedHTML);
+  return expect(replaceWhitespace(linker(inputHTML))).toBe(replaceWhitespace(expectedHTML));
 });
