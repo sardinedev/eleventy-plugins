@@ -55,7 +55,7 @@ interface InlineSVGoptions {
 }
 
 export default (eleventyConfig: any, options: InlineSVGoptions) => {
-  eleventyConfig.addAsyncShortcode('sardine-inline-svg', async (svgName: string) => {
+  eleventyConfig.addAsyncShortcode('svg', async (svgName: string) => {
     const svgData: string = fs.readFileSync(path.join(options.baseUrl, `${svgName}.svg`), 'utf8');
     const { data } = await optimize(svgData, { ...config });
     return data;
