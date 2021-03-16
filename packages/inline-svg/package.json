@@ -1,6 +1,6 @@
 {
   "name": "@sardine/eleventy-plugin-inline-svg",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "An eleventy plugin to inline SVG",
   "keywords": [
     "11ty",
