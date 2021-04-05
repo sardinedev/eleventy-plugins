@@ -15,7 +15,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "source": "lib/.eleventy.ts",
-  "types": "dist/index.d.ts",
+  "types": "dist/tiny.d.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -35,12 +35,12 @@
     "test": "jest --coverage && codecov"
   },
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^3.0.0",
+    "@fullhuman/postcss-purgecss": "^4.0.3",
     "autoprefixer": "^10.0.1",
     "cssnano": "^4.1.10",
     "jsdom": "^16.4.0",
     "postcss": "^8.1.1",
-    "purgecss-from-html": "^3.0.0"
+    "purgecss-from-html": "^4.0.3"
   },
   "bugs": {
     "url": "https://github.com/sardinedev/eleventy-plugins/issues"
