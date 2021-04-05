@@ -9,14 +9,14 @@ import { getExternalFiles, minify } from './util';
  * @param html The HTML content
  * @param options The plugin options
  */
-export const tiny = async (html: string, options?: OptionsInterface) => {
+export const tiny = async (html: string, options?: OptionsInterface): Promise<string> => {
   const dom = new JSDOM(html);
   const document = dom.window.document;
   const styles: HTMLStyleElement[] = [...document.querySelectorAll('style')];
   const links: HTMLLinkElement[] = [...document.querySelectorAll<HTMLLinkElement>('link[rel=stylesheet]')];
 
   if (links.length > 0 || styles.length > 0) {
-    let css: string = '';
+    let css = '';
 
     if (links.length > 0) {
       const externalCSS = await Promise.all(

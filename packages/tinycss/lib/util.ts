@@ -1,4 +1,4 @@
-import autoprefixer, { Autoprefixer, Options as AutoprefixerOptions } from 'autoprefixer';
+import autoprefixer, { Options as AutoprefixerOptions } from 'autoprefixer';
 import cssnano from 'cssnano';
 import postcss, { AcceptedPlugin } from 'postcss';
 import purgeHtml from 'purgecss-from-html';
@@ -65,7 +65,7 @@ export async function minify(css: string, html: string, options?: OptionsInterfa
  * Loads an external CSS file and returns the CSS content
  * @param link The URL for an external CSS
  */
-export function getExternalFiles(link: HTMLLinkElement, root: string = '_site'): Promise<string> {
+export function getExternalFiles(link: HTMLLinkElement, root = '_site'): Promise<string> {
   const src = root + link.href;
   return promises.readFile(src, { encoding: 'utf-8' });
 }
