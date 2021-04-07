@@ -4,7 +4,7 @@
   "scripts": {
     "build": "lerna run build --since",
     "test": "jest --coverage && codecov",
-    "release": "lerna publish --conventional-commits --yes"
+    "release": "yarn build && lerna publish --conventional-commits --yes"
   },
   "workspaces": [
     "packages/*"
