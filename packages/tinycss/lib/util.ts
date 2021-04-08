@@ -5,6 +5,7 @@ import purgeHtml from 'purgecss-from-html';
 import purgecss from '@fullhuman/postcss-purgecss';
 import { promises } from 'fs';
 import { OptionsInterface } from './options.interface';
+import { PurgeCSSOptions } from './purgeCSS.interface';
 
 /**
  * Transforms the CSS to a production ready state.
@@ -15,7 +16,9 @@ import { OptionsInterface } from './options.interface';
  * @param {string} html The raw HTML content
  */
 export async function minify(css: string, html: string, options?: OptionsInterface): Promise<string> {
-  const defaultPurgeCSSOptions = {
+  const userAutoprefixerOptions = options?.autoprefixer ?? {};
+  const userPurgeCSSOptions = options?.purgeCSS ?? {};
+  const purgeCSSOptions: PurgeCSSOptions = {
     content: [
       {
         raw: html,
@@ -30,27 +33,12 @@ export async function minify(css: string, html: string, options?: OptionsInterfa
     ],
   };
 
-  let purgeCSSOptions = {
-    ...defaultPurgeCSSOptions,
-  };
+  Object.assign(purgeCSSOptions, userPurgeCSSOptions);
 
-  let autoprefixerOptions: AutoprefixerOptions = {};
-
-  if (options?.autoprefixer) {
-    autoprefixerOptions = {
-      ...options.autoprefixer,
-    };
-  }
-
-  if (options?.purgeCSS) {
-    purgeCSSOptions = {
-      ...purgeCSSOptions,
-      ...options.purgeCSS,
-    };
-  }
+  const autoprefixerOptions: AutoprefixerOptions = Object.assign({}, userAutoprefixerOptions);
 
   const postcssPlugins: AcceptedPlugin[] = [
-    purgecss(purgeCSSOptions) as AcceptedPlugin,
+    purgecss(purgeCSSOptions),
     autoprefixer(autoprefixerOptions) as AcceptedPlugin,
     cssnano as AcceptedPlugin,
   ];
