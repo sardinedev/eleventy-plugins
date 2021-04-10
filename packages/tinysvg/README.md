@@ -1,6 +1,6 @@
-# `@sardine/eleventy-plugin-inline-svg`
+# `@sardine/eleventy-plugin-tinysvg`
 
-An 11ty plugin to inline SVG.
+An eleventy plugin to minify and optimise SVG
 
 ## Features
 
@@ -15,14 +15,14 @@ Inlines SVG files and optimises it with [SVGO](https://github.com/svg/svgo) to k
 ## Installation
 
 ```bash
-npm install --save-dev @sardine/eleventy-plugin-inline-svg
+npm install --save-dev @sardine/eleventy-plugin-tinysvg
 ```
 
 ## How to use it
 
 ```javascript
-const inlineSvg = require('@sardine/eleventy-plugin-inline-svg');
-eleventyConfig.addPlugin(inlineSvg, {
+const tinysvg = require('@sardine/eleventy-plugin-tinysvg');
+eleventyConfig.addPlugin(tinysvg, {
   baseUrl: 'site/_assets/svg/',
 });
 ```

@@ -1,7 +1,7 @@
 {
-  "name": "@sardine/eleventy-plugin-inline-svg",
-  "version": "0.0.1",
-  "description": "An eleventy plugin to inline SVG",
+  "name": "@sardine/eleventy-plugin-tinysvg",
+  "version": "1.0.0",
+  "description": "An eleventy plugin to minify and optimise SVG",
   "keywords": [
     "11ty",
     "11ty-plugin",
