@@ -3,13 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/sardinedev/eleventy-plugins/compare/@sardine/eleventy-plugin-tinycss@1.4.2...@sardine/eleventy-plugin-tinycss@1.5.0) (2021-05-11)
+
+### Features
+
+- remove purgecss-from-html ([32f2a39](https://github.com/sardinedev/eleventy-plugins/commit/32f2a3938c3f490c269480673c68a43c52725be7))
+
 ## [1.4.2](https://github.com/sardinedev/eleventy-plugins/compare/@sardine/eleventy-plugin-tinycss@1.4.1...@sardine/eleventy-plugin-tinycss@1.4.2) (2021-04-08)
 
 **Note:** Version bump only for package @sardine/eleventy-plugin-tinycss
-
-
-
-
 
 ## [1.4.1](https://github.com/sardinedev/eleventy-plugins/compare/@sardine/eleventy-plugin-tinycss@1.4.0...@sardine/eleventy-plugin-tinycss@1.4.1) (2021-04-05)
 
