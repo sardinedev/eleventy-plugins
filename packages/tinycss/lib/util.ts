@@ -1,7 +1,6 @@
 import autoprefixer, { Options as AutoprefixerOptions } from 'autoprefixer';
 import cssnano from 'cssnano';
 import postcss, { AcceptedPlugin } from 'postcss';
-import purgeHtml from 'purgecss-from-html';
 import purgecss from '@fullhuman/postcss-purgecss';
 import { promises } from 'fs';
 import { OptionsInterface } from './options.interface';
@@ -16,37 +15,36 @@ import { PurgeCSSOptions } from './purgeCSS.interface';
  * @param {string} html The raw HTML content
  */
 export async function minify(css: string, html: string, options?: OptionsInterface): Promise<string> {
-  const userAutoprefixerOptions = options?.autoprefixer ?? {};
-  const userPurgeCSSOptions = options?.purgeCSS ?? {};
-  const purgeCSSOptions: PurgeCSSOptions = {
-    content: [
-      {
-        raw: html,
-        extension: 'html',
-      },
-    ],
-    extractors: [
-      {
-        extractor: purgeHtml,
-        extensions: ['html'],
-      },
-    ],
-  };
+  try {
+    const userAutoprefixerOptions = options?.autoprefixer ?? {};
+    const userPurgeCSSOptions = options?.purgeCSS ?? {};
+    const purgeCSSOptions: PurgeCSSOptions = {
+      content: [
+        {
+          raw: html,
+          extension: 'html',
+        },
+      ],
+    };
 
-  Object.assign(purgeCSSOptions, userPurgeCSSOptions);
+    Object.assign(purgeCSSOptions, userPurgeCSSOptions);
 
-  const autoprefixerOptions: AutoprefixerOptions = Object.assign({}, userAutoprefixerOptions);
+    const autoprefixerOptions: AutoprefixerOptions = Object.assign({}, userAutoprefixerOptions);
 
-  const postcssPlugins: AcceptedPlugin[] = [
-    purgecss(purgeCSSOptions),
-    autoprefixer(autoprefixerOptions) as AcceptedPlugin,
-    cssnano as AcceptedPlugin,
-  ];
+    const postcssPlugins: AcceptedPlugin[] = [
+      purgecss(purgeCSSOptions),
+      autoprefixer(autoprefixerOptions) as AcceptedPlugin,
+      cssnano as AcceptedPlugin,
+    ];
 
-  const minicss = await postcss(postcssPlugins).process(css, {
-    from: undefined,
-  });
-  return minicss.css;
+    const minicss = await postcss(postcssPlugins).process(css, {
+      from: undefined,
+    });
+    return minicss.css;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 /**

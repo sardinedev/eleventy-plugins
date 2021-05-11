@@ -43,7 +43,7 @@ test('should accept Autoprefixer options', async () => {
     </body>
   </html>`;
 
-  const expected = `.a{font-size:large;-webkit-border-radius:12px;border-radius:12px}`;
+  const expected = `.a{-webkit-border-radius:12px;border-radius:12px;font-size:large}`;
 
   let optimisedCSS = await minify(fullCSS, baseHTML, { autoprefixer: { remove: false } });
   optimisedCSS = replaceWhitespace(optimisedCSS);
