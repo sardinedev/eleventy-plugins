@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "build": "lerna run build --since",
-    "test": "jest --coverage && codecov",
+    "test": "jest --coverage --passWithNoTests && codecov",
+    "test:local": "jest --passWithNoTests",
     "release": "yarn build && lerna publish --conventional-commits --yes"
   },
   "workspaces": [
