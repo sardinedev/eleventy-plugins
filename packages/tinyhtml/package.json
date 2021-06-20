@@ -1,6 +1,6 @@
 {
   "name": "@sardine/eleventy-plugin-tinyhtml",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A plugin for 11ty to minify and optimise HTML",
   "keywords": [
     "11ty",

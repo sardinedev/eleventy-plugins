@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/sardinedev/eleventy-plugins/compare/@sardine/eleventy-plugin-tinyhtml@0.1.0...@sardine/eleventy-plugin-tinyhtml@0.1.1) (2021-06-20)
+
+
+### Bug Fixes
+
+* missing tests ([b58f69e](https://github.com/sardinedev/eleventy-plugins/commit/b58f69edeafb2f37073df3dd9a30d2a59fff03d7))
+
+
+
+
+
 # 0.1.0 (2021-04-08)
 
 
