@@ -28,7 +28,7 @@ jobs:
           scope: '@sardine'
 
       - name: Install dependencies
-        run: yarn
+        run: yarn install --frozen-lockfile
 
       - name: Build packages
         run: npm run build
