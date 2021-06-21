@@ -10,3 +10,4 @@ CODE_OF_CONDUCT.md
 .eleventy.ts
 site
 *.config.js
+lib
