@@ -1,0 +1,46 @@
+{
+  "name": "@sardine/eleventy-plugin-code-highlighter",
+  "version": "1.0.0",
+  "description": "An eleventy plugin to higlight code blocks",
+  "keywords": [
+    "11ty",
+    "11ty-plugin",
+    "eleventy",
+    "eleventy-plugin"
+  ],
+  "author": "Hugo Nogueira <hnogueira@marabyte.com>",
+  "homepage": "https://github.com/sardinedev/eleventy-plugins#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "source": "lib/.eleventy.ts",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sardinedev/eleventy-plugins.git"
+  },
+  "scripts": {
+    "build": "npx microbundle -f cjs",
+    "test": "jest --coverage && codecov"
+  },
+  "bugs": {
+    "url": "https://github.com/sardinedev/eleventy-plugins/issues"
+  },
+  "dependencies": {
+    "@11ty/eleventy-cache-assets": "^2.1.0",
+    "linkedom": "^0.5.5",
+    "prismjs": "^1.23.0"
+  },
+  "devDependencies": {
+    "@types/prismjs": "^1.16.5"
+  }
+}
