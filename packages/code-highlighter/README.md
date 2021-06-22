@@ -23,6 +23,7 @@ npm install --save-dev @sardine/eleventy-plugin-code-highlighter
 ## How to use it
 
 ```javascript
+// .eleventy.js
 const codeHighlighter = require('@sardine/eleventy-plugin-code-highlighter');
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(codeHighlighter);
@@ -34,6 +35,7 @@ module.exports = function (eleventyConfig) {
 By default the [Tomorrow](https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism-tomorrow.min.css) theme is used. You can use any Prism theme by passing the theme URL as an option.
 
 ```javascript
+// .eleventy.js
 const codeHighlighter = require('@sardine/eleventy-plugin-code-highlighter');
 
 const PRISM_THEME = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-twilight.min.css';
