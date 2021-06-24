@@ -4,7 +4,7 @@ An 11ty plugin to style your `<code>`.
 
 ## Features
 
-This plugin uses [Prism](https://prismjs.com/) to style `<code>` blocks at build time and inlines prism.css in the page `<head>`.
+This plugin uses [Prism](https://prismjs.com/) to style `<code>` blocks at build time and inlines Prism CSS theme in the page `<head>`.
 
 Because styling is done at build time, you don't need to asynchronously load CSS and Javascript on the browser.
 
