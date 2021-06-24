@@ -1,6 +1,6 @@
 {
   "name": "@sardine/eleventy-plugin-code-highlighter",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "An eleventy plugin to higlight code blocks",
   "keywords": [
     "11ty",
