@@ -14,7 +14,7 @@ describe('optimise images', () => {
   </html>`;
 
   beforeAll(async () => {
-    const styledHTML = await pictureBuilder(inputHTML, '__tests__/_site/posts/index.html', '__tests__/_site');
+    const styledHTML = await pictureBuilder(inputHTML, '__tests__/site/posts/index.html', '__tests__/site');
     document = parseHTML(styledHTML).document;
   });
 
