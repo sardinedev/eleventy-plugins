@@ -29,8 +29,7 @@
     "url": "git+https://github.com/sardinedev/eleventy-plugins.git"
   },
   "scripts": {
-    "build": "npx microbundle -f cjs",
-    "test": "jest --coverage && codecov"
+    "build": "npx microbundle -f cjs"
   },
   "bugs": {
     "url": "https://github.com/sardinedev/eleventy-plugins/issues"
