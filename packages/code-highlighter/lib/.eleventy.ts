@@ -5,8 +5,8 @@ interface OptionsInterface {
 }
 
 export default (eleventyConfig: any, options?: OptionsInterface) => {
-  eleventyConfig.namespace('codeHighlighter', () => {
-    eleventyConfig.addTransform('codeHighlighter', async (content: string, outputPath: string) => {
+  eleventyConfig.namespace('sardine-', () => {
+    eleventyConfig.addTransform('code-highlighter', async (content: string, outputPath: string) => {
       try {
         if (outputPath && outputPath.endsWith('.html')) {
           content = await highlighter(content, options?.urlTheme);
