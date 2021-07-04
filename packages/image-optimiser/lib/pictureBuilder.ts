@@ -16,7 +16,7 @@ const IMAGE_FORMATS: ValidImageTypes[] = ['avif', 'webp', 'jpeg'];
  */
 
 // Different viewport sizes to be used to resize images
-const widths = [1920, 1280, 640, 320];
+const WIDTHS = [1920, 1280, 640, 320];
 
 async function fileExists(path: string): Promise<boolean> {
   try {
@@ -35,11 +35,10 @@ async function fileExists(path: string): Promise<boolean> {
  * @param {number} width The desired image width
  * @param {string} format The image format
  */
- function sizedName(filename: string, width: number, format: string) {
+function sizedName(filename: string, width: number, format: string) {
   if (format === 'jpeg') {
     format = 'jpg';
   }
-
   return filename.replace(/\.\w+$/, () => '-' + width + 'w' + '.' + format);
 }
 
@@ -49,21 +48,19 @@ async function fileExists(path: string): Promise<boolean> {
  * @param {string} width The desired image width
  * @param {string} format The image format
  */
-async function resize(filename: string, width: number, format: ValidImageTypes) {
+async function resize(imagePath: string, width: number, format: ValidImageTypes) {
   try {
-    const out = sizedName(filename, width, format);
+    const out = sizedName(imagePath, width, format);
     if (await fileExists(out)) {
-      return out;
+      return;
     }
 
-    await sharp(filename)
+    return sharp(imagePath)
       .resize(width)
       [format]({
         quality: 75,
       })
       .toFile(out);
-
-    return out;
   } catch (error) {
     console.error(error);
   }
@@ -76,9 +73,9 @@ async function resize(filename: string, width: number, format: ValidImageTypes) 
  * @param {string} filename
  * @param {string} format
  */
- async function srcset(filename: string, format: ValidImageTypes) {
-  const names = await Promise.all(widths.map((w) => resize(filename, w, format)));
-  return names.map((n, i) => `${n} ${widths[i]}w`).join(', ');
+function srcset(src: string, format: ValidImageTypes) {
+  const names = WIDTHS.map((w) => sizedName(src, w, format));
+  return names.map((n, i) => `${n} ${WIDTHS[i]}w`).join(', ');
 }
 
 /**
@@ -87,8 +84,8 @@ async function resize(filename: string, width: number, format: ValidImageTypes) 
  * @param {string} src The image's URL
  * @param {string} format The image format
  */
-async function setSrcset(img: HTMLSourceElement, src: string, format: ValidImageTypes) {
-  img.setAttribute('srcset', await srcset(src, format));
+function setSrcset(img: HTMLSourceElement, src: string, format: ValidImageTypes) {
+  img.setAttribute('srcset', srcset(src, format));
   img.setAttribute(
     'sizes',
     img.getAttribute('align') ? '(max-width: 608px) 50vw, 187px' : '(max-width: 608px) 100vw, 608px',
@@ -102,8 +99,7 @@ async function buildPictureElement(
   formats: ValidImageTypes[],
 ) {
   const src = img.getAttribute('src') as string;
-  let pathToImage = path.dirname(outputPath) + src;
-
+  let pathToImage = process.cwd() + '/' + outputDir + src;
   // if the image source is external, there's nothing to do
   if (/^(https?\:\/\/|\/\/)/i.test(src)) {
     return;
@@ -116,7 +112,6 @@ async function buildPictureElement(
 
   // By setting the `height` and `width` attributes browsers can prevent Content Layout Shift when loading images
   try {
-    console.log(pathToImage);
     const { format, height, width } = await sharp(pathToImage).metadata();
     if (height && width) {
       const heightString = height.toString();
@@ -141,9 +136,10 @@ async function buildPictureElement(
 
     for (const format of formats) {
       const el = doc.createElement('source');
-      await setSrcset(el, pathToImage, format);
+      setSrcset(el, src, format);
       el.setAttribute('type', `image/${format}`);
       picture.appendChild(el);
+      await Promise.all(WIDTHS.map((width) => resize(pathToImage, width, format)));
     }
 
     img.parentElement?.replaceChild(picture, img);

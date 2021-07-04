@@ -1,12 +1,9 @@
-# `@sardine/eleventy-plugin-code-highlighter`
+# `@sardine/eleventy-plugin-image-optimiser`
 
-An 11ty plugin to style your `<code>`.
+An 11ty plugin to optimise your images.
 
 ## Features
 
-This plugin uses [Prism](https://prismjs.com/) to style `<code>` blocks at build time and inlines Prism CSS theme in the page `<head>`.
-
-Because styling is done at build time, you don't need to asynchronously load CSS and Javascript on the browser.
 
 ## Requirements
 
@@ -17,33 +14,20 @@ Because styling is done at build time, you don't need to asynchronously load CSS
 ## Installation
 
 ```bash
-npm install --save-dev @sardine/eleventy-plugin-code-highlighter
+npm install --save-dev @sardine/eleventy-plugin-image-optimiser
 ```
 
 ## How to use it
 
 ```javascript
 // .eleventy.js
-const codeHighlighter = require('@sardine/eleventy-plugin-code-highlighter');
+const imageOptimiser = require('@sardine/eleventy-plugin-image-optimiser');
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addPlugin(codeHighlighter);
+  eleventyConfig.addPlugin(imageOptimiser);
 };
 ```
 
 ### Options
-
-By default the [Tomorrow](https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism-tomorrow.min.css) theme is used. You can use any Prism theme by passing the theme URL as an option.
-
-```javascript
-// .eleventy.js
-const codeHighlighter = require('@sardine/eleventy-plugin-code-highlighter');
-
-const PRISM_THEME = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-twilight.min.css';
-
-module.exports = function (eleventyConfig) {
-  eleventyConfig.addPlugin(codeHighlighter, { urlTheme: PRISM_THEME });
-};
-```
 
 ## License
 

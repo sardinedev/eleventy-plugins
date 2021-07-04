@@ -1,7 +1,7 @@
 import { parseHTML } from 'linkedom';
 import { pictureBuilder } from '../lib/pictureBuilder';
 
-describe('well formated code', () => {
+describe('optimise images', () => {
   let document: Document;
   const inputHTML = `
   <!DOCTYPE html>
@@ -14,11 +14,11 @@ describe('well formated code', () => {
   </html>`;
 
   beforeAll(async () => {
-    const styledHTML = await pictureBuilder(inputHTML, '__tests__/_site/posts/index.html');
+    const styledHTML = await pictureBuilder(inputHTML, '__tests__/_site/posts/index.html', '__tests__/_site');
     document = parseHTML(styledHTML).document;
   });
 
-  test('inlines prism css', () => {
+  test('run e2e', () => {
     const picture: HTMLPictureElement[] = [...document.querySelectorAll('picture')];
     console.log(picture[0].innerHTML);
     return expect(picture[0]).toBeTruthy();
