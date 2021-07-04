@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/sardinedev/eleventy-plugins/compare/@sardine/eleventy-plugin-image-optimiser@1.1.2...@sardine/eleventy-plugin-image-optimiser@1.1.3) (2021-07-04)
+
+### Bug Fixes
+
+- image ratio ([9465851](https://github.com/sardinedev/eleventy-plugins/commit/9465851c76e74e3f5b925f2221db1f634a53980b))
+
 ## [1.1.2](https://github.com/sardinedev/eleventy-plugins/compare/@sardine/eleventy-plugin-image-optimiser@1.1.1...@sardine/eleventy-plugin-image-optimiser@1.1.2) (2021-07-04)
 
 ### Bug Fixes
