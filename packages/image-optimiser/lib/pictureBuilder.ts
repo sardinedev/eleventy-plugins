@@ -115,7 +115,7 @@ async function buildPictureElement(
     const { format, height, width } = await sharp(pathToImage).metadata();
     if (height && width) {
       const heightString = height.toString();
-      const widthString = height.toString();
+      const widthString = width.toString();
       img.setAttribute('width', widthString);
       img.setAttribute('height', heightString);
     }
