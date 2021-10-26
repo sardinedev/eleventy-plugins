@@ -9,7 +9,7 @@ An 11ty plugin to optimise your images.
 
 - [Node.js](https://nodejs.org/en/download/) 12 and up
 
-- [11ty](https://www.11ty.dev/) 0.11
+- [11ty](https://www.11ty.dev/) 0.11.0
 
 ## Installation
 
