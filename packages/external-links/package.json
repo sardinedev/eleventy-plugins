@@ -1,6 +1,6 @@
 {
   "name": "@sardine/eleventy-plugin-external-links",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "An eleventy plugin to enforce safe external links",
   "keywords": [
     "11ty",
