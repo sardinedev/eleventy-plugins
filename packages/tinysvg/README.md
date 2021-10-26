@@ -10,7 +10,7 @@ Inlines SVG files and optimises it with [SVGO](https://github.com/svg/svgo) to k
 
 - [Node.js](https://nodejs.org/en/download/) 12 and up
 
-- [11ty](https://www.11ty.dev/) 0.11
+- [11ty](https://www.11ty.dev/) 0.11.0
 
 ## Installation
 
