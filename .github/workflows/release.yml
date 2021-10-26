@@ -22,8 +22,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 12
-          always-auth: 'true'
+          node-version: 16
           registry-url: 'https://registry.npmjs.org'
           scope: '@sardine'
 
