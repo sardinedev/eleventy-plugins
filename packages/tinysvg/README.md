@@ -4,7 +4,7 @@ An eleventy plugin to minify and optimise SVG
 
 ## Features
 
-Inlines SVG files and optimises it with [SVGO](https://github.com/svg/svgo) to keep it as small as possible
+Inlines SVG files and optimises it with [SVGO](https://github.com/svg/svgo) to keep it as small as possible.
 
 ## Requirements
 
