@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
+    "types": "lerna run types",
     "build": "lerna run build --since",
     "test": "jest",
     "release": "yarn build && lerna publish --conventional-commits --yes"
