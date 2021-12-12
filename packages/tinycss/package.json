@@ -1,6 +1,6 @@
 {
   "name": "@sardine/eleventy-plugin-tinycss",
-  "version": "1.5.0",
+  "version": "1.5.1-ci.53+fc024ec",
   "description": "A plugin for 11ty to minify and optimise CSS",
   "keywords": [
     "11ty",
@@ -45,5 +45,5 @@
   "bugs": {
     "url": "https://github.com/sardinedev/eleventy-plugins/issues"
   },
-  "gitHead": "23d9687b58a2878568535c89d279a6f0ff452735"
+  "gitHead": "fc024ecd25ce850126028e5e5234dae06aa27069"
 }
