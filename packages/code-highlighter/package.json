@@ -29,7 +29,7 @@
     "url": "git+https://github.com/sardinedev/eleventy-plugins.git"
   },
   "scripts": {
-    "build": "npx swc ./lib -d dist --include-dotfiles --config-file ../../.swcrc",
+    "build": "npx spack",
     "test": "jest --coverage && codecov"
   },
   "bugs": {
