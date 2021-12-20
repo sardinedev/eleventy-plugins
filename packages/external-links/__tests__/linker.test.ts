@@ -19,8 +19,8 @@ test('finds external anchor links', () => {
   <html>
     <body>
       <a rel="noreferrer" target="_blank" href="https://www.out.com">Click me!</a>
-      <a rel="noreferrer" target="_blank" href="https://www.blank.com">Click me!</a>
-      <a target="_blank" rel="noreferrer" href="https://www.rel.com">Click me!</a>
+      <a rel="noreferrer" href="https://www.blank.com" target="_blank">Click me!</a>
+      <a target="_blank" href="https://www.rel.com" rel="noreferrer">Click me!</a>
       <a href="/blog/">Click me!</a>
       <p>heelo</p>
     </body>
