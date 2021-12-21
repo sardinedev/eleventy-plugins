@@ -13,9 +13,13 @@
   "author": "Hugo Nogueira <hnogueira@marabyte.com>",
   "homepage": "https://github.com/sardinedev/eleventy-plugins#readme",
   "license": "MIT",
-  "main": "dist/index.js",
   "source": "lib/.eleventy.ts",
-  "types": "dist/tiny.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">= 12"
+  },
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -31,8 +35,7 @@
     "url": "git+https://github.com/sardinedev/eleventy-plugins.git"
   },
   "scripts": {
-    "types": "npx tsc",
-    "build": "npx swc ./lib -d ./dist --config-file ../../.swcrc",
+    "build": "parcel build",
     "test": "jest --coverage && codecov"
   },
   "dependencies": {

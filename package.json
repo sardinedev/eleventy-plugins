@@ -3,16 +3,17 @@
   "private": true,
   "scripts": {
     "types": "lerna run types",
-    "build": "lerna run build --since",
-    "test": "jest",
-    "release": "yarn build && lerna publish --conventional-commits --yes"
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "release": "yarn build && lerna publish --conventional-commits --yes",
+    "reset-modules": "rm -rf **/**/node_modules"
   },
   "workspaces": [
     "packages/*"
   ],
   "devDependencies": {
-    "@swc/cli": "^0.1.53",
-    "@swc/core": "^1.2.119",
+    "@parcel/packager-ts": "^2.0.1",
+    "@parcel/transformer-typescript-types": "^2.0.1",
     "@types/autoprefixer": "^10.2.0",
     "@types/cssnano": "^4.0.0",
     "@types/jest": "^26.0.14",
@@ -25,9 +26,10 @@
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.3.0",
     "jest": "^26.5.0",
-    "lerna": "^4.0.0",
     "lint-staged": "^10.5.1",
+    "parcel": "^2.0.1",
     "prettier": "^2.1.2",
+    "turbo": "^1.0.19",
     "typescript": "^4.0.3"
   },
   "husky": {
@@ -38,7 +40,27 @@
   "lint-staged": {
     "*.{js,ts,json,md}": "npx prettier --write"
   },
-  "dependencies": {
-    "@swc/jest": "^0.2.12"
+  "turbo": {
+    "baseBranch": "origin/main",
+    "pipeline": {
+      "build": {
+        "dependsOn": [
+          "^build"
+        ]
+      },
+      "test": {
+        "dependsOn": [
+          "build"
+        ]
+      },
+      "deploy": {
+        "dependsOn": [
+          "build",
+          "test",
+          "lint"
+        ]
+      },
+      "lint": {}
+    }
   }
 }
