@@ -15,7 +15,7 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: yarn
 
-      - run: npx lerna run test --stream
+      - run: npm run test
 
       - uses: codecov/codecov-action@v1
         with:
