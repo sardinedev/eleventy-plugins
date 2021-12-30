@@ -5,7 +5,7 @@
     "types": "lerna run types",
     "build": "turbo run build",
     "test": "turbo run test",
-    "release": "turbo run release",
+    "release": "turbo run release && npx changeset publish",
     "reset-modules": "rm -rf **/**/node_modules"
   },
   "workspaces": [
@@ -48,13 +48,12 @@
       "build": {
         "dependsOn": [
           "^build"
+        ],
+        "outputs": [
+          "dist/**"
         ]
       },
-      "test": {
-        "dependsOn": [
-          "build"
-        ]
-      },
+      "test": {},
       "release": {
         "dependsOn": [
           "build",
