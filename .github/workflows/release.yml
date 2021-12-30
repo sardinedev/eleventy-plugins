@@ -33,11 +33,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Create Release Pull Request or Publish to npm
+      - name: Build packages
+        run: npm run release
+
+      - name: Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: yarn release
+          publish: npx changeset publish
+          commit: '[ci] release'
+          title: '[ci] release'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
