@@ -3,3 +3,5 @@ dist
 _site
 coverage
 .cache
+.turbo
+.parcel-cache

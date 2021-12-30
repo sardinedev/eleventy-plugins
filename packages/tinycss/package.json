@@ -1,6 +1,6 @@
 {
   "name": "@sardine/eleventy-plugin-tinycss",
-  "version": "1.5.0",
+  "version": "1.5.1-ci.53+fc024ec",
   "description": "A plugin for 11ty to minify and optimise CSS",
   "keywords": [
     "11ty",
@@ -13,9 +13,13 @@
   "author": "Hugo Nogueira <hnogueira@marabyte.com>",
   "homepage": "https://github.com/sardinedev/eleventy-plugins#readme",
   "license": "MIT",
-  "main": "dist/index.js",
   "source": "lib/.eleventy.ts",
-  "types": "dist/tiny.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">= 14"
+  },
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -31,8 +35,8 @@
     "url": "git+https://github.com/sardinedev/eleventy-plugins.git"
   },
   "scripts": {
-    "build": "npx microbundle -f cjs",
-    "test": "jest --coverage && codecov"
+    "build": "parcel build",
+    "test": "jest --coverage"
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^4.0.3",
@@ -44,5 +48,5 @@
   "bugs": {
     "url": "https://github.com/sardinedev/eleventy-plugins/issues"
   },
-  "gitHead": "23d9687b58a2878568535c89d279a6f0ff452735"
+  "gitHead": "fc024ecd25ce850126028e5e5234dae06aa27069"
 }

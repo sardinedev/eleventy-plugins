@@ -11,9 +11,13 @@
   "author": "Hugo Nogueira <hnogueira@marabyte.com>",
   "homepage": "https://github.com/sardinedev/eleventy-plugins#readme",
   "license": "MIT",
-  "main": "dist/index.js",
   "source": "lib/.eleventy.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">= 14"
+  },
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -29,7 +33,7 @@
     "url": "git+https://github.com/sardinedev/eleventy-plugins.git"
   },
   "scripts": {
-    "build": "npx microbundle -f cjs"
+    "build": "parcel build"
   },
   "bugs": {
     "url": "https://github.com/sardinedev/eleventy-plugins/issues"
