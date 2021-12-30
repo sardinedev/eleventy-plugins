@@ -34,7 +34,7 @@
   },
   "scripts": {
     "build": "parcel build",
-    "test": "jest --coverage && codecov"
+    "test": "jest --coverage"
   },
   "bugs": {
     "url": "https://github.com/sardinedev/eleventy-plugins/issues"
