@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          # pulls all commits (needed for lerna / semantic release to correctly version)
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: "0"
 
       - name: Configure Git User
@@ -31,15 +31,16 @@ jobs:
           npm set "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}"
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
 
       - name: Build packages
         run: npm run build
 
-      - name: Release
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: yarn release
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npm whoami
-          npm run release
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
