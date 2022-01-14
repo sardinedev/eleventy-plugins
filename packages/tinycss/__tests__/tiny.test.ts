@@ -117,7 +117,7 @@ test('should read both an external CSS file and inline CSS and then inline optim
   <!DOCTYPE html>
   <html>
     <head>
-    <style>.a{font-size:large;padding:.5rem}</style>
+    <style>.a{font-size:large} .a{padding:.5rem}</style>
     </head>
     <body>
       <h1 class="a">Hello!</h1>

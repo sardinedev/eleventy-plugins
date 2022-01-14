@@ -1,5 +1,3 @@
-import autoprefixer, { Options as AutoprefixerOptions } from 'autoprefixer';
-import cssnano from 'cssnano';
 import postcss, { AcceptedPlugin } from 'postcss';
 import purgecss from '@fullhuman/postcss-purgecss';
 import { transform } from '@parcel/css';
@@ -16,9 +14,7 @@ import { PurgeCSSOptions } from './purgeCSS.interface';
  * @param {string} html The raw HTML content
  */
 export async function minify(rawCss: string, html: string, options?: OptionsInterface): Promise<string> {
-  console.log(rawCss);
   try {
-    // const userAutoprefixerOptions = options?.autoprefixer ?? {};
     const userPurgeCSSOptions = options?.purgeCSS ?? {};
     const purgeCSSOptions: PurgeCSSOptions = {
       content: [
@@ -31,19 +27,13 @@ export async function minify(rawCss: string, html: string, options?: OptionsInte
 
     Object.assign(purgeCSSOptions, userPurgeCSSOptions);
 
-    // const autoprefixerOptions: AutoprefixerOptions = Object.assign({}, userAutoprefixerOptions);
-
     const { code } = transform({
       filename: 'style.css',
       code: Buffer.from(rawCss),
       minify: true,
     });
 
-    const postcssPlugins: AcceptedPlugin[] = [
-      purgecss(purgeCSSOptions),
-      // autoprefixer(autoprefixerOptions) as AcceptedPlugin,
-      // cssnano as AcceptedPlugin,
-    ];
+    const postcssPlugins: AcceptedPlugin[] = [purgecss(purgeCSSOptions)];
 
     const { css } = await postcss(postcssPlugins).process(code, {
       from: undefined,
