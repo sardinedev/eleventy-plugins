@@ -9,7 +9,7 @@
     "reset-modules": "rm -rf **/**/node_modules"
   },
   "workspaces": [
-    "packages/*"
+    "./packages/*"
   ],
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
