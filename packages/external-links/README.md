@@ -43,7 +43,7 @@ npm install --save-dev @sardine/eleventy-plugin-external-links
 ## How to use it
 
 ```javascript
-const safeLinks = require('@sardine/eleventy-plugin-external-links');
+const safeLinks = require('@sardine/eleventy-plugin-external-links').default;
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(safeLinks);
 };

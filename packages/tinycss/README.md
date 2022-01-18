@@ -107,7 +107,7 @@ npm install --save-dev @sardine/eleventy-plugin-tinycss
 ## How to use it
 
 ```javascript
-const tinyCSS = require('@sardine/eleventy-plugin-tinycss');
+const tinyCSS = require('@sardine/eleventy-plugin-tinycss').default;
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(tinyCSS);
 };
@@ -120,7 +120,7 @@ module.exports = function (eleventyConfig) {
 By default the plugin uses `_site` as the 11ty output directory. If you're using other directory you'll need to tell the plugin:
 
 ```javascript
-const tinyCSS = require('@sardine/eleventy-plugin-tinycss');
+const tinyCSS = require('@sardine/eleventy-plugin-tinycss').default;
 module.exports = function (eleventyConfig) {
   const tinyOptions = {
     output: 'dist',
@@ -154,7 +154,7 @@ By default the following options are used:
 You can pass your own options just like in [the official documentation](https://purgecss.com/plugins/postcss.html#options) :
 
 ```javascript
-const tinyCSS = require('@sardine/eleventy-plugin-tinycss');
+const tinyCSS = require('@sardine/eleventy-plugin-tinycss').default;
 module.exports = function (eleventyConfig) {
   const tinyOptions = {
     purgeCSS: {
@@ -172,7 +172,7 @@ module.exports = function (eleventyConfig) {
 You can pass your own options just like in [the official documentation](https://github.com/postcss/autoprefixer#options) :
 
 ```javascript
-const tinyCSS = require('@sardine/eleventy-plugin-tinycss');
+const tinyCSS = require('@sardine/eleventy-plugin-tinycss').default;
 module.exports = function (eleventyConfig) {
   const tinyOptions = {
     autoprefixer: {

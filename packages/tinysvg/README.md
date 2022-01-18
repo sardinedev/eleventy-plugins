@@ -21,10 +21,12 @@ npm install --save-dev @sardine/eleventy-plugin-tinysvg
 ## How to use it
 
 ```javascript
-const tinysvg = require('@sardine/eleventy-plugin-tinysvg');
-eleventyConfig.addPlugin(tinysvg, {
-  baseUrl: 'site/_assets/svg/',
-});
+const tinysvg = require('@sardine/eleventy-plugin-tinysvg').default;
+module.exports = function (eleventyConfig) {
+  eleventyConfig.addPlugin(tinysvg, {
+    baseUrl: 'site/_assets/svg/',
+  });
+};
 ```
 
 ## License

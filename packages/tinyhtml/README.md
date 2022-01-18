@@ -25,7 +25,7 @@ npm install --save-dev @sardine/eleventy-plugin-tinyhtml
 ## How to use it
 
 ```javascript
-const tinyHTML = require('@sardine/eleventy-plugin-tinyhtml');
+const tinyHTML = require('@sardine/eleventy-plugin-tinyhtml').default;
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(tinyHTML);
 };
@@ -34,7 +34,7 @@ module.exports = function (eleventyConfig) {
 ## Configuration
 
 ```javascript
-const tinyHTML = require('@sardine/eleventy-plugin-tinyhtml');
+const tinyHTML = require('@sardine/eleventy-plugin-tinyhtml').default;
 module.exports = function (eleventyConfig) {
   const tinyHTMLOptions = {
     html5: true,

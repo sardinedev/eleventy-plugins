@@ -21,7 +21,7 @@ npm install --save-dev @sardine/eleventy-plugin-image-optimiser
 
 ```javascript
 // .eleventy.js
-const imageOptimiser = require('@sardine/eleventy-plugin-image-optimiser');
+const imageOptimiser = require('@sardine/eleventy-plugin-image-optimiser').default;
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(imageOptimiser);
 };
