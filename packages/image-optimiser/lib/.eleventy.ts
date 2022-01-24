@@ -5,7 +5,7 @@ interface OptionsInterface {
   output?: string;
 }
 
-export default (eleventyConfig: any, options?: OptionsInterface) => {
+module.exports = (eleventyConfig: any, options?: OptionsInterface) => {
   eleventyConfig.namespace('sardine_', () => {
     eleventyConfig.addTransform('image-optimiser', async (content: string, outputPath: string) => {
       try {
