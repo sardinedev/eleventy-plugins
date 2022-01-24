@@ -1,10 +1,10 @@
 import { highlighter } from './highlighter';
 
-interface OptionsInterface {
+export interface OptionsInterface {
   urlTheme?: string;
 }
 
-export default (eleventyConfig: any, options?: OptionsInterface) => {
+module.exports = (eleventyConfig: any, options?: OptionsInterface) => {
   eleventyConfig.namespace('sardine-', () => {
     eleventyConfig.addTransform('code-highlighter', async (content: string, outputPath: string) => {
       try {
