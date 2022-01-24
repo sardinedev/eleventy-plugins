@@ -49,13 +49,13 @@ const config = {
   ],
 };
 
-interface InlineSVGoptions {
+export interface InlineSVGoptions {
   /** The base URL to the folder containing the SVG */
   baseUrl: string;
   svgoPlugins?: string[];
 }
 
-export default (eleventyConfig: any, options: InlineSVGoptions) => {
+module.exports = (eleventyConfig: any, options: InlineSVGoptions) => {
   eleventyConfig.addAsyncShortcode('svg', async (svgName: string) => {
     const svgData: string = fs.readFileSync(path.join(options.baseUrl, `${svgName}.svg`), 'utf8');
     const svgoPlugins = options.svgoPlugins ?? [];

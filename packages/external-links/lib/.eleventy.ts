@@ -1,6 +1,6 @@
 import { linker } from '../lib/linker';
 
-export default (eleventyConfig: any) => {
+module.exports = (eleventyConfig: any) => {
   eleventyConfig.namespace('external-links', () => {
     eleventyConfig.addTransform('external-links', (content: string, outputPath: string) => {
       try {
