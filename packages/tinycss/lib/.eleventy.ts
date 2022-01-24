@@ -1,7 +1,9 @@
 import { OptionsInterface } from './options.interface';
 import { tiny } from './tiny';
 
-export default (eleventyConfig: any, options?: OptionsInterface) => {
+export type { OptionsInterface };
+
+module.exports = (eleventyConfig: any, options?: OptionsInterface) => {
   eleventyConfig.namespace('tinyCSS', () => {
     eleventyConfig.addTransform('tinyCSS', async (content: string, outputPath: string) => {
       try {
