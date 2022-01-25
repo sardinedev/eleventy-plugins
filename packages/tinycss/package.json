@@ -1,6 +1,6 @@
 {
   "name": "@sardine/eleventy-plugin-tinycss",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "A plugin for 11ty to minify and optimise CSS",
   "keywords": [
     "11ty",
