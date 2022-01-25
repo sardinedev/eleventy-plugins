@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.6.0
+
+### Minor Changes
+
+- [#44](https://github.com/sardinedev/eleventy-plugins/pull/44) [`bd8722d`](https://github.com/sardinedev/eleventy-plugins/commit/bd8722d36b49f8686dd3d17aea82e489f5d853a5) Thanks [@Marabyte](https://github.com/Marabyte)! - chore: Update module export
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

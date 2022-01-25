@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.2.0
+
+### Minor Changes
+
+- [#44](https://github.com/sardinedev/eleventy-plugins/pull/44) [`bd8722d`](https://github.com/sardinedev/eleventy-plugins/commit/bd8722d36b49f8686dd3d17aea82e489f5d853a5) Thanks [@Marabyte](https://github.com/Marabyte)! - chore: Update module export
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
@@ -7,17 +13,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @sardine/eleventy-plugin-image-optimiser
 
-
-
-
-
 ## [1.1.4](https://github.com/sardinedev/eleventy-plugins/compare/@sardine/eleventy-plugin-image-optimiser@1.1.3...@sardine/eleventy-plugin-image-optimiser@1.1.4) (2021-10-26)
 
 **Note:** Version bump only for package @sardine/eleventy-plugin-image-optimiser
-
-
-
-
 
 ## [1.1.3](https://github.com/sardinedev/eleventy-plugins/compare/@sardine/eleventy-plugin-image-optimiser@1.1.2...@sardine/eleventy-plugin-image-optimiser@1.1.3) (2021-07-04)
 
