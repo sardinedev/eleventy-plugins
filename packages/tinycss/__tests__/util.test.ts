@@ -1,10 +1,10 @@
 import { getExternalFiles, minify } from '../lib/util';
 import { replaceWhitespace } from '../../../util/util';
-import { JSDOM } from 'jsdom';
+import { parseHTML } from 'linkedom';
 
 test('should return a promise with the contents of a CSS file', async () => {
-  const dom = new JSDOM();
-  const document = dom.window.document;
+  const html = `<!DOCTYPE html><html></html>`;
+  const { document } = parseHTML(html);
   const linkElement: HTMLLinkElement = document.createElement('link');
   linkElement.href = '/mocks/styles.css';
 
