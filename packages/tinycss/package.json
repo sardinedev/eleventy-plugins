@@ -39,10 +39,10 @@
     "test": "jest --coverage"
   },
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^4.0.3",
     "@parcel/css": "^1.3.1",
+    "browserslist": "^4.19.1",
     "jsdom": "^16.5.3",
-    "postcss": "^8.2.15"
+    "purgecss": "^4.1.3"
   },
   "bugs": {
     "url": "https://github.com/sardinedev/eleventy-plugins/issues"
