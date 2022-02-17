@@ -84,13 +84,9 @@ An 11ty plugin to optimise CSS.
 
   You can pass [PurgeCSS configuration object](https://purgecss.com/plugins/postcss.html#options) in the [plugin's options](./Configuration)
 
-- Uses [Autoprefixer](https://autoprefixer.github.io/) to add vendor specific prefixes.
+- Uses [Browserslist](https://autoprefixer.github.io/) to add vendor specific prefixes.
 
-  You can pass [Autoprefixer options](https://github.com/postcss/autoprefixer#options) in the [plugin's options](./Configuration)
-
-- Uses [CSSNano](https://cssnano.co/) to minify and optimise the final CSS.
-
-  You can config CSSNano with the default [config files](https://cssnano.co/docs/config-file/#cssnano-config-files)
+  You can pass a list of browsers in the [plugin's options](./Configuration) . Alternatively it will look for a `.browserslistrc` file or a `browserslist` in `package.json`. Check the details [here](https://github.com/browserslist/browserslist#config-file)
 
 ## Requirements
 
@@ -167,23 +163,22 @@ module.exports = function (eleventyConfig) {
 };
 ```
 
-### Autoprefixer options
+### Browserslist options
 
-You can pass your own options just like in [the official documentation](https://github.com/postcss/autoprefixer#options) :
+You can pass a list of browsers as a string :
 
 ```javascript
 const tinyCSS = require('@sardine/eleventy-plugin-tinycss');
 module.exports = function (eleventyConfig) {
   const tinyOptions = {
-    autoprefixer: {
-      // keep browser prefixes
-      remove: false,
-    },
+    browserslist: 'last 2 version, not dead',
   };
 
   eleventyConfig.addPlugin(tinyCSS, tinyOptions);
 };
 ```
+
+Alternatively it will look for a `.browserslistrc` file or a `browserslist` in `package.json`. Check the details [here](https://github.com/browserslist/browserslist#config-file)
 
 ## License
 
