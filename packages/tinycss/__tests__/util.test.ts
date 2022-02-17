@@ -1,10 +1,10 @@
 import { getExternalFiles, minify } from '../lib/util';
 import { replaceWhitespace } from '../../../util/util';
-import { JSDOM } from 'jsdom';
+import { parseHTML } from 'linkedom';
 
 test('should return a promise with the contents of a CSS file', async () => {
-  const dom = new JSDOM();
-  const document = dom.window.document;
+  const html = `<!DOCTYPE html><html></html>`;
+  const { document } = parseHTML(html);
   const linkElement: HTMLLinkElement = document.createElement('link');
   linkElement.href = '/mocks/styles.css';
 
@@ -34,8 +34,8 @@ test('should return a promise with the CSS styles used in the HTML', async () =>
   return expect(optimisedCSS).toBe(expected);
 });
 
-test('should accept Autoprefixer options', async () => {
-  const fullCSS = `.a {font-size: large;-webkit-border-radius: 12px;border-radius: 12px;}\n`;
+test('should accept Browserslist options', async () => {
+  const fullCSS = `.a {-webkit-border-radius:12px;font-size: large;border-radius: 12px;}\n`;
   const baseHTML = `<!DOCTYPE html>
   <html>
     <body>
@@ -43,9 +43,9 @@ test('should accept Autoprefixer options', async () => {
     </body>
   </html>`;
 
-  const expected = `.a{-webkit-border-radius:12px;border-radius:12px;font-size:large}`;
+  const expected = `.a{border-radius:12px;font-size:large}`;
 
-  let optimisedCSS = await minify(fullCSS, baseHTML, { autoprefixer: { remove: false } });
+  let optimisedCSS = await minify(fullCSS, baseHTML, { browserslists: 'last 2 versions' });
   optimisedCSS = replaceWhitespace(optimisedCSS);
 
   return expect(optimisedCSS).toBe(expected);

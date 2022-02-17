@@ -1,4 +1,4 @@
-import { JSDOM } from 'jsdom';
+import { parseHTML } from 'linkedom';
 import { OptionsInterface } from './options.interface';
 import { getExternalFiles, minify } from './util';
 
@@ -10,8 +10,8 @@ import { getExternalFiles, minify } from './util';
  * @param options The plugin options
  */
 export const tiny = async (html: string, options?: OptionsInterface): Promise<string> => {
-  const dom = new JSDOM(html);
-  const document = dom.window.document;
+  const { document } = parseHTML(html);
+
   const styles: HTMLStyleElement[] = [...document.querySelectorAll('style')];
   const links: HTMLLinkElement[] = [...document.querySelectorAll<HTMLLinkElement>('link[rel=stylesheet]')];
 
@@ -48,7 +48,7 @@ export const tiny = async (html: string, options?: OptionsInterface): Promise<st
     const inlinStyle = document.createTextNode(minicss);
     inline.appendChild(inlinStyle);
     head.appendChild(inline);
-    html = dom.serialize();
+    html = document.toString();
   }
 
   return html;

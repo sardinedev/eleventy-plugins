@@ -1,23 +1,31 @@
-import autoprefixer, { Options as AutoprefixerOptions } from 'autoprefixer';
-import cssnano from 'cssnano';
-import postcss, { AcceptedPlugin } from 'postcss';
-import purgecss from '@fullhuman/postcss-purgecss';
+import { PurgeCSS } from 'purgecss';
+import type { UserDefinedOptions as PurgeCSSOptions } from 'purgecss';
+import browserslist from 'browserslist';
+import { transform, browserslistToTargets } from '@parcel/css';
 import { promises } from 'fs';
 import { OptionsInterface } from './options.interface';
-import { PurgeCSSOptions } from './purgeCSS.interface';
 
 /**
  * Transforms the CSS to a production ready state.
  * - PurgeCSS removes all unused CSS.
  * - Autoprefixer applies vendor specific prefixes
  * - CSSNano minifies the remaining CSS
- * @param {string} css The page CSS content
+ * @param {string} rawCss The page CSS content
  * @param {string} html The raw HTML content
  */
-export async function minify(css: string, html: string, options?: OptionsInterface): Promise<string> {
+export async function minify(rawCss: string, html: string, options?: OptionsInterface): Promise<string> {
   try {
-    const userAutoprefixerOptions = options?.autoprefixer ?? {};
     const userPurgeCSSOptions = options?.purgeCSS ?? {};
+
+    const targets = browserslistToTargets(browserslist(options?.browserslists ?? null));
+
+    const { code } = transform({
+      filename: 'style.css',
+      code: Buffer.from(rawCss),
+      minify: true,
+      targets,
+    });
+
     const purgeCSSOptions: PurgeCSSOptions = {
       content: [
         {
@@ -25,22 +33,14 @@ export async function minify(css: string, html: string, options?: OptionsInterfa
           extension: 'html',
         },
       ],
+      css: [{ raw: code.toString() }],
     };
 
     Object.assign(purgeCSSOptions, userPurgeCSSOptions);
 
-    const autoprefixerOptions: AutoprefixerOptions = Object.assign({}, userAutoprefixerOptions);
+    const [{ css }] = await new PurgeCSS().purge(purgeCSSOptions);
 
-    const postcssPlugins: AcceptedPlugin[] = [
-      purgecss(purgeCSSOptions),
-      autoprefixer(autoprefixerOptions) as AcceptedPlugin,
-      cssnano as AcceptedPlugin,
-    ];
-
-    const minicss = await postcss(postcssPlugins).process(css, {
-      from: undefined,
-    });
-    return minicss.css;
+    return css;
   } catch (error) {
     console.error(error);
     throw error;
