@@ -1,8 +1,8 @@
-import { replaceWhitespace } from '../../../util/util';
-import { linker } from '../lib/linker';
+import { replaceWhitespace } from "../../../util/util";
+import { linker } from "../lib/linker";
 
-test('finds external anchor links', () => {
-  const inputHTML = `
+test("finds external anchor links", () => {
+	const inputHTML = `
   <!DOCTYPE html>
   <html>
     <body>
@@ -14,7 +14,7 @@ test('finds external anchor links', () => {
     </body>
   </html>`;
 
-  const expectedHTML = `
+	const expectedHTML = `
   <!DOCTYPE html>
   <html>
     <body>
@@ -26,5 +26,7 @@ test('finds external anchor links', () => {
     </body>
   </html>`;
 
-  return expect(replaceWhitespace(linker(inputHTML))).toBe(replaceWhitespace(expectedHTML));
+	return expect(replaceWhitespace(linker(inputHTML))).toBe(
+		replaceWhitespace(expectedHTML),
+	);
 });
