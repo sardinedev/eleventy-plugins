@@ -39,7 +39,7 @@ function sizedName(filename: string, width: number, format: string) {
   if (format === 'jpeg') {
     format = 'jpg';
   }
-  return filename.replace(/\.\w+$/, () => '-' + width + 'w' + '.' + format);
+  return filename.replace(/\.\w+$/, () => `-${width}w.${format}`);
 }
 
 /**
@@ -99,7 +99,7 @@ async function buildPictureElement(
   formats: ValidImageTypes[],
 ) {
   const src = img.getAttribute('src') as string;
-  let pathToImage = process.cwd() + '/' + outputDir + src;
+  let pathToImage = `${process.cwd()}/${outputDir}${src}`;
   // if the image source is external, there's nothing to do
   if (/^(https?\:\/\/|\/\/)/i.test(src)) {
     return;
@@ -107,7 +107,7 @@ async function buildPictureElement(
 
   // if the image source is relative resolve the path to it
   if (/^\.+\//.test(src)) {
-    pathToImage = '/' + path.relative(outputDir, path.resolve(path.dirname(outputPath), src));
+    pathToImage = `/${path.relative(outputDir, path.resolve(path.dirname(outputPath), src))}`;
   }
 
   // By setting the `height` and `width` attributes browsers can prevent Content Layout Shift when loading images
@@ -127,7 +127,7 @@ async function buildPictureElement(
     img.setAttribute('loading', 'lazy');
 
     // If the image type is SVG, we're done.
-    if (format == 'svg') {
+    if (format === 'svg') {
       return;
     }
 

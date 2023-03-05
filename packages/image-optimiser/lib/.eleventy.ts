@@ -9,7 +9,7 @@ export default (eleventyConfig: any, options?: OptionsInterface) => {
   eleventyConfig.namespace('sardine_', () => {
     eleventyConfig.addTransform('image-optimiser', async (content: string, outputPath: string) => {
       try {
-        if (outputPath && outputPath.endsWith('.html')) {
+        if (outputPath?.endsWith('.html')) {
           const outputDir = options?.output ?? '_site';
           content = await pictureBuilder(content, outputPath, outputDir);
         }

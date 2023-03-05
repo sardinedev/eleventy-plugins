@@ -18,7 +18,7 @@ export default (eleventyConfig: any, options: Options = {}) => {
   eleventyConfig.namespace('tinyHTML', () => {
     eleventyConfig.addTransform('tinyHTML', (content: string, outputPath: string) => {
       try {
-        if (outputPath && outputPath.endsWith('.html')) {
+        if (outputPath?.endsWith('.html')) {
           content = minify(content, htmlOptions);
         }
       } catch (error) {

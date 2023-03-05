@@ -3,12 +3,12 @@ import { replaceWhitespace } from '../../../util/util';
 import { parseHTML } from 'linkedom';
 
 test('should return a promise with the contents of a CSS file', async () => {
-  const html = `<!DOCTYPE html><html></html>`;
+  const html = "<!DOCTYPE html><html></html>";
   const { document } = parseHTML(html);
   const linkElement: HTMLLinkElement = document.createElement('link');
   linkElement.href = '/mocks/styles.css';
 
-  const expected = `.a{font-size:large;}#b{color:aqua;}`;
+  const expected = ".a{font-size:large;}#b{color:aqua;}";
 
   let optimisedCSS = await getExternalFiles(linkElement, __dirname);
   optimisedCSS = replaceWhitespace(optimisedCSS);
@@ -17,7 +17,7 @@ test('should return a promise with the contents of a CSS file', async () => {
 });
 
 test('should return a promise with the CSS styles used in the HTML', async () => {
-  const fullCSS = `.a {font-size: large;}\n#b {color: aqua;}\n`;
+  const fullCSS = ".a {font-size: large;}\n#b {color: aqua;}\n";
   const baseHTML = `<!DOCTYPE html>
   <html>
     <body>
@@ -35,7 +35,7 @@ test('should return a promise with the CSS styles used in the HTML', async () =>
 });
 
 test('should accept Browserslist options', async () => {
-  const fullCSS = `.a {-webkit-border-radius:12px;font-size: large;border-radius: 12px;}\n`;
+  const fullCSS = ".a {-webkit-border-radius:12px;font-size: large;border-radius: 12px;}\n";
   const baseHTML = `<!DOCTYPE html>
   <html>
     <body>
@@ -43,7 +43,7 @@ test('should accept Browserslist options', async () => {
     </body>
   </html>`;
 
-  const expected = `.a{border-radius:12px;font-size:large}`;
+  const expected = ".a{border-radius:12px;font-size:large}";
 
   let optimisedCSS = await minify(fullCSS, baseHTML, { browserslists: 'last 2 versions' });
   optimisedCSS = replaceWhitespace(optimisedCSS);
