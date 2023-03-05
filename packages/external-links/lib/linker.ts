@@ -1,4 +1,4 @@
-import { parseHTML } from 'linkedom';
+import { parseHTML } from "linkedom";
 
 /**
  * Finds unsafe anchor tags and adds safer attributes
@@ -6,19 +6,19 @@ import { parseHTML } from 'linkedom';
  * @returns The parsed HTML with safe anchor tags
  */
 export const linker = (html: string): string => {
-  const { document } = parseHTML(html);
-  const links = [...document.querySelectorAll<HTMLAnchorElement>('a')];
+	const { document } = parseHTML(html);
+	const links = [...document.querySelectorAll<HTMLAnchorElement>("a")];
 
-  if (links.length > 0) {
-    links.map((link) => {
-      if (/^(https?\:\/\/|\/\/)/i.test(link.href)) {
-        link.target = '_blank';
-        link.setAttribute('rel', 'noreferrer');
-      }
-      return link;
-    });
-  } else {
-    return html;
-  }
-  return document.toString();
+	if (links.length > 0) {
+		links.map((link) => {
+			if (/^(https?\:\/\/|\/\/)/i.test(link.href)) {
+				link.target = "_blank";
+				link.setAttribute("rel", "noreferrer");
+			}
+			return link;
+		});
+	} else {
+		return html;
+	}
+	return document.toString();
 };

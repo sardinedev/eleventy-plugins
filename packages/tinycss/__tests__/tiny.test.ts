@@ -1,8 +1,8 @@
-import { tiny } from '../lib/tiny';
-import { replaceWhitespace } from '../../../util/util';
+import { tiny } from "../lib/tiny";
+import { replaceWhitespace } from "../../../util/util";
 
-test('should read CSS from an external file and inline the optimised CSS', async () => {
-  const inputHTML = `
+test("should read CSS from an external file and inline the optimised CSS", async () => {
+	const inputHTML = `
   <!DOCTYPE html>
   <html>
     <head>
@@ -13,7 +13,7 @@ test('should read CSS from an external file and inline the optimised CSS', async
     </body>
   </html>`;
 
-  let expectedHTML = `
+	let expectedHTML = `
   <!DOCTYPE html>
   <html>
     <head>
@@ -24,17 +24,20 @@ test('should read CSS from an external file and inline the optimised CSS', async
     </body>
   </html>`;
 
-  let optimisedCSS = await tiny(inputHTML, { output: __dirname, purgeCSS: { keyframes: false } });
+	let optimisedCSS = await tiny(inputHTML, {
+		output: __dirname,
+		purgeCSS: { keyframes: false },
+	});
 
-  optimisedCSS = replaceWhitespace(optimisedCSS);
+	optimisedCSS = replaceWhitespace(optimisedCSS);
 
-  expectedHTML = replaceWhitespace(expectedHTML);
+	expectedHTML = replaceWhitespace(expectedHTML);
 
-  return expect(optimisedCSS).toBe(expectedHTML);
+	return expect(optimisedCSS).toBe(expectedHTML);
 });
 
-test('should merge multiple inline CSS', async () => {
-  const inputHTML = `
+test("should merge multiple inline CSS", async () => {
+	const inputHTML = `
   <!DOCTYPE html>
   <html>
     <head>
@@ -46,7 +49,7 @@ test('should merge multiple inline CSS', async () => {
     </body>
   </html>`;
 
-  let expectedHTML = `
+	let expectedHTML = `
   <!DOCTYPE html>
   <html>
     <head>
@@ -57,17 +60,17 @@ test('should merge multiple inline CSS', async () => {
     </body>
   </html>`;
 
-  let optimisedCSS = await tiny(inputHTML, { output: 'tests' });
+	let optimisedCSS = await tiny(inputHTML, { output: "tests" });
 
-  optimisedCSS = replaceWhitespace(optimisedCSS);
+	optimisedCSS = replaceWhitespace(optimisedCSS);
 
-  expectedHTML = replaceWhitespace(expectedHTML);
+	expectedHTML = replaceWhitespace(expectedHTML);
 
-  return expect(optimisedCSS).toBe(expectedHTML);
+	return expect(optimisedCSS).toBe(expectedHTML);
 });
 
-test('should read CSS from an external file, inline the optimised CSS and keep the external CSS from diff domain', async () => {
-  const inputHTML = `
+test("should read CSS from an external file, inline the optimised CSS and keep the external CSS from diff domain", async () => {
+	const inputHTML = `
   <!DOCTYPE html>
   <html>
     <head>
@@ -79,7 +82,7 @@ test('should read CSS from an external file, inline the optimised CSS and keep t
     </body>
   </html>`;
 
-  let expectedHTML = `
+	let expectedHTML = `
   <!DOCTYPE html>
   <html>
     <head>
@@ -91,17 +94,17 @@ test('should read CSS from an external file, inline the optimised CSS and keep t
     </body>
   </html>`;
 
-  let optimisedCSS = await tiny(inputHTML, { output: __dirname });
+	let optimisedCSS = await tiny(inputHTML, { output: __dirname });
 
-  optimisedCSS = replaceWhitespace(optimisedCSS);
+	optimisedCSS = replaceWhitespace(optimisedCSS);
 
-  expectedHTML = replaceWhitespace(expectedHTML);
+	expectedHTML = replaceWhitespace(expectedHTML);
 
-  return expect(optimisedCSS).toBe(expectedHTML);
+	return expect(optimisedCSS).toBe(expectedHTML);
 });
 
-test('should read both an external CSS file and inline CSS and then inline optimised CSS', async () => {
-  const inputHTML = `
+test("should read both an external CSS file and inline CSS and then inline optimised CSS", async () => {
+	const inputHTML = `
   <!DOCTYPE html>
   <html>
     <head>
@@ -113,7 +116,7 @@ test('should read both an external CSS file and inline CSS and then inline optim
     </body>
   </html>`;
 
-  let expectedHTML = `
+	let expectedHTML = `
   <!DOCTYPE html>
   <html>
     <head>
@@ -124,17 +127,17 @@ test('should read both an external CSS file and inline CSS and then inline optim
     </body>
   </html>`;
 
-  let optimisedCSS = await tiny(inputHTML, { output: __dirname });
+	let optimisedCSS = await tiny(inputHTML, { output: __dirname });
 
-  optimisedCSS = replaceWhitespace(optimisedCSS);
+	optimisedCSS = replaceWhitespace(optimisedCSS);
 
-  expectedHTML = replaceWhitespace(expectedHTML);
+	expectedHTML = replaceWhitespace(expectedHTML);
 
-  return expect(optimisedCSS).toBe(expectedHTML);
+	return expect(optimisedCSS).toBe(expectedHTML);
 });
 
-test('should return the HTML if no CSS links are present', async () => {
-  const inputHTML = `
+test("should return the HTML if no CSS links are present", async () => {
+	const inputHTML = `
   <!DOCTYPE html>
   <html>
     <head>
@@ -144,7 +147,7 @@ test('should return the HTML if no CSS links are present', async () => {
     </body>
   </html>`;
 
-  let expectedHTML = `
+	let expectedHTML = `
   <!DOCTYPE html>
   <html>
     <head>
@@ -154,17 +157,17 @@ test('should return the HTML if no CSS links are present', async () => {
     </body>
   </html>`;
 
-  let optimisedCSS = await tiny(inputHTML, { output: __dirname });
+	let optimisedCSS = await tiny(inputHTML, { output: __dirname });
 
-  optimisedCSS = replaceWhitespace(optimisedCSS);
+	optimisedCSS = replaceWhitespace(optimisedCSS);
 
-  expectedHTML = replaceWhitespace(expectedHTML);
+	expectedHTML = replaceWhitespace(expectedHTML);
 
-  return expect(optimisedCSS).toBe(expectedHTML);
+	return expect(optimisedCSS).toBe(expectedHTML);
 });
 
-test('should return the HTML if no inline or CSS links are present', async () => {
-  const inputHTML = `
+test("should return the HTML if no inline or CSS links are present", async () => {
+	const inputHTML = `
   <!DOCTYPE html>
   <html>
     <head>
@@ -174,7 +177,7 @@ test('should return the HTML if no inline or CSS links are present', async () =>
     </body>
   </html>`;
 
-  let expectedHTML = `
+	let expectedHTML = `
   <!DOCTYPE html>
   <html>
     <head>
@@ -184,11 +187,11 @@ test('should return the HTML if no inline or CSS links are present', async () =>
     </body>
   </html>`;
 
-  let optimisedCSS = await tiny(inputHTML, { output: __dirname });
+	let optimisedCSS = await tiny(inputHTML, { output: __dirname });
 
-  optimisedCSS = replaceWhitespace(optimisedCSS);
+	optimisedCSS = replaceWhitespace(optimisedCSS);
 
-  expectedHTML = replaceWhitespace(expectedHTML);
+	expectedHTML = replaceWhitespace(expectedHTML);
 
-  return expect(optimisedCSS).toBe(expectedHTML);
+	return expect(optimisedCSS).toBe(expectedHTML);
 });

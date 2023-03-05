@@ -1,11 +1,11 @@
-import path from 'path';
-import sharp, { Sharp } from 'sharp';
-import { stat } from 'fs/promises';
-import { parseHTML } from 'linkedom';
+import path from "path";
+import sharp, { Sharp } from "sharp";
+import { stat } from "fs/promises";
+import { parseHTML } from "linkedom";
 
-type ValidImageTypes = keyof Pick<Sharp, 'avif' | 'webp' | 'jpeg'>;
+type ValidImageTypes = keyof Pick<Sharp, "avif" | "webp" | "jpeg">;
 
-const IMAGE_FORMATS: ValidImageTypes[] = ['avif', 'webp', 'jpeg'];
+const IMAGE_FORMATS: ValidImageTypes[] = ["avif", "webp", "jpeg"];
 
 /**
  * 1 - Parse HTML
@@ -19,12 +19,12 @@ const IMAGE_FORMATS: ValidImageTypes[] = ['avif', 'webp', 'jpeg'];
 const WIDTHS = [1920, 1280, 640, 320];
 
 async function fileExists(path: string): Promise<boolean> {
-  try {
-    await stat(path);
-    return true;
-  } catch (error) {
-    return false;
-  }
+	try {
+		await stat(path);
+		return true;
+	} catch (error) {
+		return false;
+	}
 }
 
 /**
@@ -36,10 +36,10 @@ async function fileExists(path: string): Promise<boolean> {
  * @param {string} format The image format
  */
 function sizedName(filename: string, width: number, format: string) {
-  if (format === 'jpeg') {
-    format = 'jpg';
-  }
-  return filename.replace(/\.\w+$/, () => '-' + width + 'w' + '.' + format);
+	if (format === "jpeg") {
+		format = "jpg";
+	}
+	return filename.replace(/\.\w+$/, () => `-${width}w.${format}`);
 }
 
 /**
@@ -48,22 +48,26 @@ function sizedName(filename: string, width: number, format: string) {
  * @param {string} width The desired image width
  * @param {string} format The image format
  */
-async function resize(imagePath: string, width: number, format: ValidImageTypes) {
-  try {
-    const out = sizedName(imagePath, width, format);
-    if (await fileExists(out)) {
-      return;
-    }
+async function resize(
+	imagePath: string,
+	width: number,
+	format: ValidImageTypes,
+) {
+	try {
+		const out = sizedName(imagePath, width, format);
+		if (await fileExists(out)) {
+			return;
+		}
 
-    return sharp(imagePath)
-      .resize(width)
-      [format]({
-        quality: 75,
-      })
-      .toFile(out);
-  } catch (error) {
-    console.error(error);
-  }
+		return sharp(imagePath)
+			.resize(width)
+			[format]({
+				quality: 75,
+			})
+			.toFile(out);
+	} catch (error) {
+		console.error(error);
+	}
 }
 
 /**
@@ -74,8 +78,8 @@ async function resize(imagePath: string, width: number, format: ValidImageTypes)
  * @param {string} format
  */
 function srcset(src: string, format: ValidImageTypes) {
-  const names = WIDTHS.map((w) => sizedName(src, w, format));
-  return names.map((n, i) => `${n} ${WIDTHS[i]}w`).join(', ');
+	const names = WIDTHS.map((w) => sizedName(src, w, format));
+	return names.map((n, i) => `${n} ${WIDTHS[i]}w`).join(", ");
 }
 
 /**
@@ -84,86 +88,101 @@ function srcset(src: string, format: ValidImageTypes) {
  * @param {string} src The image's URL
  * @param {string} format The image format
  */
-function setSrcset(img: HTMLSourceElement, src: string, format: ValidImageTypes) {
-  img.setAttribute('srcset', srcset(src, format));
-  img.setAttribute(
-    'sizes',
-    img.getAttribute('align') ? '(max-width: 608px) 50vw, 187px' : '(max-width: 608px) 100vw, 608px',
-  );
+function setSrcset(
+	img: HTMLSourceElement,
+	src: string,
+	format: ValidImageTypes,
+) {
+	img.setAttribute("srcset", srcset(src, format));
+	img.setAttribute(
+		"sizes",
+		img.getAttribute("align")
+			? "(max-width: 608px) 50vw, 187px"
+			: "(max-width: 608px) 100vw, 608px",
+	);
 }
 
 async function buildPictureElement(
-  img: HTMLImageElement,
-  outputPath: string,
-  outputDir: string,
-  formats: ValidImageTypes[],
+	img: HTMLImageElement,
+	outputPath: string,
+	outputDir: string,
+	formats: ValidImageTypes[],
 ) {
-  const src = img.getAttribute('src') as string;
-  let pathToImage = process.cwd() + '/' + outputDir + src;
-  // if the image source is external, there's nothing to do
-  if (/^(https?\:\/\/|\/\/)/i.test(src)) {
-    return;
-  }
+	const src = img.getAttribute("src") as string;
+	let pathToImage = `${process.cwd()}/${outputDir}${src}`;
+	// if the image source is external, there's nothing to do
+	if (/^(https?\:\/\/|\/\/)/i.test(src)) {
+		return;
+	}
 
-  // if the image source is relative resolve the path to it
-  if (/^\.+\//.test(src)) {
-    pathToImage = '/' + path.relative(outputDir, path.resolve(path.dirname(outputPath), src));
-  }
+	// if the image source is relative resolve the path to it
+	if (/^\.+\//.test(src)) {
+		pathToImage = `/${path.relative(
+			outputDir,
+			path.resolve(path.dirname(outputPath), src),
+		)}`;
+	}
 
-  // By setting the `height` and `width` attributes browsers can prevent Content Layout Shift when loading images
-  try {
-    const { format, height, width } = await sharp(pathToImage).metadata();
-    if (height && width) {
-      const heightString = height.toString();
-      const widthString = width.toString();
-      img.setAttribute('width', widthString);
-      img.setAttribute('height', heightString);
-    }
+	// By setting the `height` and `width` attributes browsers can prevent Content Layout Shift when loading images
+	try {
+		const { format, height, width } = await sharp(pathToImage).metadata();
+		if (height && width) {
+			const heightString = height.toString();
+			const widthString = width.toString();
+			img.setAttribute("width", widthString);
+			img.setAttribute("height", heightString);
+		}
 
-    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/decoding
-    img.setAttribute('decoding', 'async');
+		// https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/decoding
+		img.setAttribute("decoding", "async");
 
-    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading
-    img.setAttribute('loading', 'lazy');
+		// https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading
+		img.setAttribute("loading", "lazy");
 
-    // If the image type is SVG, we're done.
-    if (format == 'svg') {
-      return;
-    }
+		// If the image type is SVG, we're done.
+		if (format === "svg") {
+			return;
+		}
 
-    const doc = img.ownerDocument;
-    const picture = doc.createElement('picture');
+		const doc = img.ownerDocument;
+		const picture = doc.createElement("picture");
 
-    for (const format of formats) {
-      const el = doc.createElement('source');
-      setSrcset(el, src, format);
-      el.setAttribute('type', `image/${format}`);
-      picture.appendChild(el);
-      await Promise.all(WIDTHS.map((width) => resize(pathToImage, width, format)));
-    }
+		for (const format of formats) {
+			const el = doc.createElement("source");
+			setSrcset(el, src, format);
+			el.setAttribute("type", `image/${format}`);
+			picture.appendChild(el);
+			await Promise.all(
+				WIDTHS.map((width) => resize(pathToImage, width, format)),
+			);
+		}
 
-    img.parentElement?.replaceChild(picture, img);
-    picture.appendChild(img);
-    return img;
-  } catch (error) {
-    console.warn(error.message);
-    return;
-  }
+		img.parentElement?.replaceChild(picture, img);
+		picture.appendChild(img);
+		return img;
+	} catch (error) {
+		console.warn(error.message);
+		return;
+	}
 }
 
 export const pictureBuilder = async (
-  html: string,
-  outputPath: string,
-  outputDir = '_site',
-  formats = IMAGE_FORMATS,
+	html: string,
+	outputPath: string,
+	outputDir = "_site",
+	formats = IMAGE_FORMATS,
 ): Promise<string> => {
-  const { document } = parseHTML(html);
-  const images = [...document.querySelectorAll<HTMLImageElement>('img')];
+	const { document } = parseHTML(html);
+	const images = [...document.querySelectorAll<HTMLImageElement>("img")];
 
-  if (images.length > 0) {
-    await Promise.all(images.map((img) => buildPictureElement(img, outputPath, outputDir, formats)));
-    html = document.toString();
-  }
+	if (images.length > 0) {
+		await Promise.all(
+			images.map((img) =>
+				buildPictureElement(img, outputPath, outputDir, formats),
+			),
+		);
+		html = document.toString();
+	}
 
-  return html;
+	return html;
 };
