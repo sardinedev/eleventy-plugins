@@ -1,3 +1,4 @@
+import type { EleventyConfig } from "../../../types/eleventy";
 import { pictureBuilder } from "./pictureBuilder";
 
 interface OptionsInterface {
@@ -5,7 +6,7 @@ interface OptionsInterface {
 	output?: string;
 }
 
-export default (eleventyConfig: any, options?: OptionsInterface) => {
+export default (eleventyConfig: EleventyConfig, options?: OptionsInterface) => {
 	eleventyConfig.namespace("sardine_", () => {
 		eleventyConfig.addTransform(
 			"image-optimiser",

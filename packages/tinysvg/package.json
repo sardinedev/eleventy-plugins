@@ -33,7 +33,8 @@
     "url": "git+https://github.com/sardinedev/eleventy-plugins.git"
   },
   "scripts": {
-    "build": "parcel build"
+    "build": "parcel build",
+    "types": "npx tsc --noEmit"
   },
   "bugs": {
     "url": "https://github.com/sardinedev/eleventy-plugins/issues"

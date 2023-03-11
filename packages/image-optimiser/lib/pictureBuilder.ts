@@ -1,7 +1,7 @@
-import path from "path";
-import sharp, { Sharp } from "sharp";
 import { stat } from "fs/promises";
 import { parseHTML } from "linkedom";
+import path from "path";
+import sharp, { Sharp } from "sharp";
 
 type ValidImageTypes = keyof Pick<Sharp, "avif" | "webp" | "jpeg">;
 
@@ -44,7 +44,7 @@ function sizedName(filename: string, width: number, format: string) {
 
 /**
  * Resizes an image. For each image we'll have multiple sizes for different viewports.
- * @param {string} filename The image filename
+ * @param {string} imagePath The image filename
  * @param {string} width The desired image width
  * @param {string} format The image format
  */
@@ -161,8 +161,9 @@ async function buildPictureElement(
 		picture.appendChild(img);
 		return img;
 	} catch (error) {
-		console.warn(error.message);
-		return;
+		if (error instanceof Error) {
+			console.warn(error.message);
+		}
 	}
 }
 
