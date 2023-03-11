@@ -1,6 +1,7 @@
-import { minify, Options } from "html-minifier";
+import type { EleventyConfig } from "../../../types/eleventy";
+import { Options, minify } from "html-minifier";
 
-export default (eleventyConfig: any, options: Options = {}) => {
+export default (eleventyConfig: EleventyConfig, options: Options = {}) => {
 	const htmlOptions: Options = {
 		collapseBooleanAttributes: true,
 		collapseWhitespace: true,

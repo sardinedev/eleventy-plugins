@@ -1,6 +1,7 @@
-const path = require("path");
-const fs = require("fs");
-const { optimize } = require("svgo");
+import type { EleventyConfig } from "../../../types/eleventy";;
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { optimize } from "svgo";
 
 const config = {
 	plugins: [
@@ -55,10 +56,10 @@ export interface InlineSVGoptions {
 	svgoPlugins?: string[];
 }
 
-export default (eleventyConfig: any, options: InlineSVGoptions) => {
+export default (eleventyConfig: EleventyConfig, options: InlineSVGoptions) => {
 	eleventyConfig.addAsyncShortcode("svg", async (svgName: string) => {
-		const svgData: string = fs.readFileSync(
-			path.join(options.baseUrl, `${svgName}.svg`),
+		const svgData: string = readFileSync(
+			join(options.baseUrl, `${svgName}.svg`),
 			"utf8",
 		);
 		const svgoPlugins = options.svgoPlugins ?? [];

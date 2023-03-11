@@ -1,9 +1,10 @@
-import { OptionsInterface } from "./options.interface";
+import type { EleventyConfig } from "../../../types/eleventy";
+import type { OptionsInterface } from "./options.interface";
 import { tiny } from "./tiny";
 
 export type { OptionsInterface };
 
-export default (eleventyConfig: any, options?: OptionsInterface) => {
+export default (eleventyConfig: EleventyConfig, options?: OptionsInterface) => {
 	eleventyConfig.namespace("tinyCSS", () => {
 		eleventyConfig.addTransform(
 			"tinyCSS",

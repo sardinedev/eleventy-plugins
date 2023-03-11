@@ -1,7 +1,8 @@
-import { parseHTML } from "linkedom";
 import EleventyCache from "@11ty/eleventy-cache-assets";
+import { parseHTML } from "linkedom";
 import Prism from "prismjs";
 import loadLanguages from "prismjs/components/";
+
 
 const DEFAULT_URL_THEME =
 	"https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism-tomorrow.min.css";

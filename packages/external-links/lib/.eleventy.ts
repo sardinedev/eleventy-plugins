@@ -1,6 +1,8 @@
+import type { EleventyConfig } from "../../../types/eleventy";
 import { linker } from "../lib/linker";
 
-export default (eleventyConfig: any) => {
+
+export default (eleventyConfig: EleventyConfig) => {
 	eleventyConfig.namespace("external-links", () => {
 		eleventyConfig.addTransform(
 			"external-links",

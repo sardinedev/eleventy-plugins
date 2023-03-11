@@ -35,7 +35,8 @@
     "url": "git+https://github.com/sardinedev/eleventy-plugins.git"
   },
   "scripts": {
-    "build": "parcel build"
+    "build": "parcel build",
+    "types": "npx tsc --noEmit"
   },
   "dependencies": {
     "html-minifier": "^4.0.0"
