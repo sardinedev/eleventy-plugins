@@ -19,7 +19,7 @@
     "@parcel/transformer-typescript-types": "^2.8.3",
     "@swc/core": "^1.2.124",
     "@swc/jest": "^0.2.15",
-    "@tsconfig/node16": "^1.0.3",
+    "@tsconfig/node16-strictest": "^1.0.4",
     "@types/jest": "^26.0.14",
     "@types/node": "^17.0.45",
     "husky": "^8.0.3",

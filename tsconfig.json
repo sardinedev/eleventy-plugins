@@ -1,7 +1,8 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
+  "extends": "@tsconfig/node16-strictest/tsconfig.json",
   "exclude": ["./**/__tests__/**"],
   "compilerOptions": {
     "lib": ["ES2021", "DOM", "DOM.Iterable"],
+    "checkJs": false
   }
 }
