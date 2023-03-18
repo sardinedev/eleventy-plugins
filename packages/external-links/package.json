@@ -34,7 +34,8 @@
   },
   "scripts": {
     "build": "parcel build",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "types": "npx tsc --noEmit"
   },
   "bugs": {
     "url": "https://github.com/sardinedev/eleventy-plugins/issues"
