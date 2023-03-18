@@ -1,11 +1,22 @@
 import EleventyCache from "@11ty/eleventy-cache-assets";
 import { parseHTML } from "linkedom";
+import fetch from "node-fetch";
 import Prism from "prismjs";
 import loadLanguages from "prismjs/components/";
 
 
 const DEFAULT_URL_THEME =
 	"https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism-tomorrow.min.css";
+
+export async function getPrismTheme(url: string): Promise<string> {
+	try {
+			const response = await fetch(url);
+			return await response.text();
+	} catch (error) {
+		console.error("[@sardine/eleventy-plugin-code-highlighter]: Failed to fetch prism theme from CDN");
+		throw error;
+	}
+}
 
 export const highlighter = async (
 	content: string,
@@ -21,10 +32,16 @@ export const highlighter = async (
 
 	const codedSections = [...document.querySelectorAll("pre > code")];
 	if (codedSections.length > 0) {
-		const css: string = await EleventyCache(url, {
-			duration: "1h",
-			type: "text",
-		});
+		let css: string;
+		try {
+			css = await EleventyCache(url, {
+				duration: "1h",
+				type: "text",
+			});
+		} catch (_error) {
+			console.warn("[@sardine/eleventy-plugin-code-highlighter]: Failed to fetch prism theme from cache. Trying to fetch from CDN");
+			css = await getPrismTheme(url);
+		}
 
 		const inline = document.createElement("style");
 		const inlinStyle = document.createTextNode(
