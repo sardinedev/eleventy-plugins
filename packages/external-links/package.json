@@ -42,6 +42,6 @@
   },
   "gitHead": "23d9687b58a2878568535c89d279a6f0ff452735",
   "dependencies": {
-    "linkedom": "^0.13.0"
+    "linkedom": "^0.18.0"
   }
 }
