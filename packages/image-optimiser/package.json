@@ -40,7 +40,7 @@
     "url": "https://github.com/sardinedev/eleventy-plugins/issues"
   },
   "dependencies": {
-    "linkedom": "^0.13.0",
+    "linkedom": "^0.18.0",
     "sharp": "^0.32.0"
   },
   "devDependencies": {
