@@ -41,9 +41,9 @@
   },
   "dependencies": {
     "linkedom": "^0.18.0",
-    "sharp": "^0.32.0"
+    "sharp": "^0.34.0"
   },
   "devDependencies": {
-    "@types/sharp": "^0.28.3"
+    "@types/sharp": "^0.32.0"
   }
 }
